@@ -10,3 +10,38 @@ staff_blueprint = Blueprint("staff", __name__)
 def staff():
     staff = staff_repository.select_all()
     return render_template("staff/index.html", staff=staff)
+
+# NEW
+@staff_blueprint.route("/staff/new")
+def new_staff_member():
+    return render_template("staff/new.html")
+
+# CREATE
+@staff_blueprint.route("/staff", methods=["POST"])
+def create_staff_member():
+    name = request.form["name"]
+    new_staff_member = Staff(name)
+    staff_repository.save(new_staff_member)
+    return redirect("/staff")
+
+# EDIT
+@staff_blueprint.route("/staff/<id>/edit")
+def edit_staff_member(id):
+    staff_member = staff_repository.select(id)
+    return render_template('staff/edit.html', staff_member=staff_member)
+
+
+# UPDATE
+@staff_blueprint.route("/staff/<id>", methods=["POST"])
+def update_staff_member(id):
+    name = request.form["name"]
+    updated_staff_member = Staff(name)
+    staff_repository.update(updated_staff_member)
+    return redirect("/staff")
+
+
+# DELETE
+@staff_blueprint.route("/staff/<id>/delete", methods=["POST"])
+def delete_staff_member(id):
+    staff_repository.delete(id)
+    return redirect("/staff")
