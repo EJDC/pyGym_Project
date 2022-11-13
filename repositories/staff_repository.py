@@ -2,7 +2,7 @@ from db.run_sql import run_sql
 from models.staff import Staff
 
 def save(staff):
-    sql = "INSERT INTO staff (first_name, last_name, email, monthly_invoice) VALUES (%s, %s, %s, %s, %s) RETURNING id"
+    sql = "INSERT INTO staff (first_name, last_name, email, monthly_invoice) VALUES (%s, %s, %s, %s) RETURNING id"
     values = [staff.first_name, staff.last_name, staff.email, staff.monthly_invoice]
     results = run_sql(sql, values)
     id = results[0]['id']

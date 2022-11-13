@@ -9,7 +9,7 @@ import repositories.session_repository as session_type_repository
 
 def save(staff_session_type):
     sql = "INSERT INTO staff_session_types (staff_id, session_type_id) VALUES (%s, %s) RETURNING id"
-    values = [staff_session_type.staff.id, staff_session_type.session_type.id]
+    values = [staff_session_type.staff_member.id, staff_session_type.session_type.id]
     results = run_sql(sql, values)
     id = results[0]['id']
     staff_session_type.id = id

@@ -6,7 +6,7 @@ import repositories.room_repository as room_repository
 
 def save(session):
     sql = "INSERT INTO sessions (name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor_id, instructor_payment, room, session_type) VALUES (%s, %s, %s, %s, %s, %s,%s, %s,%s,%s, %s, %s) RETURNING id"
-    values = [session.name, session.date_and_time, session.duration, session.min_age, session.max_age, session.p_member_price, session.s_member_price, session.max_capacity, session.staff.id, session.instructor_payment, session.room.id, session.session_type.id]
+    values = [session.name, session.date_and_time, session.duration, session.min_age, session.max_age, session.p_member_price, session.s_member_price, session.max_capacity, session.instructor.id, session.instructor_payment, session.room.id, session.session_type.id]
     results = run_sql(sql, values)
     id = results[0]['id']
     session.id = id
