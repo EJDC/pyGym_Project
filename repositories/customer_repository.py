@@ -2,8 +2,8 @@ from db.run_sql import run_sql
 from models.customer import Customer
 
 def save(customer):
-    sql = "INSERT INTO customers (name) VALUES (%s) RETURNING id"
-    values = [customer.name]
+    sql = "INSERT INTO customers (first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4, missed_classes, monthly_bill) VALUES (%s, %s, %s, %s, %s, %s,%s, %s,%s,%s, %s, %s, %s) RETURNING id"
+    values = [customer.first_name, customer.last_name, customer.dob, customer.email, customer.membership_level, customer.membership_status, customer.payment_method, customer.extra_physio, customer.extra_pt, customer.extra_service_3, customer.extra_service_4, customer.missed_classes, customer.monthly_bill]
     results = run_sql(sql, values)
     id = results[0]['id']
     customer.id = id
@@ -14,7 +14,7 @@ def select_all():
     sql = "SELECT * FROM customers"
     results = run_sql(sql)
     for result in results:
-        customer = Customer(result["name"], result["id"])
+        customer = Customer(result["first_name"], result["last_name"], result["dob"], result["email"], result["membership_level"], result["membership_status"], result["payment_method"], result["extra_physio"], result["extra_pt"], result["extra_service_3"], result["extra_service_4"], result["missed_classes"], result["monthly_bill"])
         customers.append(customer)
     return customers
 
@@ -24,12 +24,9 @@ def select(id):
     sql = "SELECT * FROM customers WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
-    # checking if the list returned by `run_sql(sql, values)` is empty. Empty lists are 'fasly' 
-    # Could alternativly have..
-    # if len(results) > 0 
     if results:
         result = results[0]
-        customer = customer(result["name"], result["id"])
+        customer = customer(result["first_name"], result["last_name"], result["dob"], result["email"], result["membership_level"], result["membership_status"], result["payment_method"], result["extra_physio"], result["extra_pt"], result["extra_service_3"], result["extra_service_4"], result["missed_classes"], result["monthly_bill"])
     return customer
 
 
@@ -45,6 +42,6 @@ def delete(id):
 
 
 def update(customer):
-    sql = "UPDATE customers SET name = %s WHERE id = %s"
-    values = [customer.name, customer.id]
+    sql = "UPDATE customers SET (first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4, missed_classes, monthly_bill) = (%s, %s, %s, %s, %s, %s,%s, %s,%s,%s, %s, %s, %s) WHERE id = %s"
+    values = [customer.first_name, customer.last_name, customer.dob, customer.email, customer.membership_level, customer.membership_status, customer.payment_method, customer.extra_physio, customer.extra_pt, customer.extra_service_3, customer.extra_service_4, customer.missed_classes, customer.monthly_bill, customer.id]
     run_sql(sql, values)
