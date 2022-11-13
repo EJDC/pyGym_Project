@@ -42,6 +42,6 @@ def delete(id):
 
 
 def update(staff):
-    sql = "UPDATE staff SET (first_name, last_name, email, monthly_invoice) = (%s, %s, %s, %s, %s) WHERE id = %s"
+    sql = "UPDATE staff SET (first_name, last_name, email, monthly_invoice) = (%s, %s, %s, %s) WHERE id = %s"
     values = [staff.first_name, staff.last_name, staff.email, staff.monthly_invoice, staff.id]
     run_sql(sql, values)

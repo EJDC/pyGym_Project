@@ -53,5 +53,5 @@ def delete(id):
 
 def update(staff_session_type):
     sql = "UPDATE staff_session_types SET (staff_id, session_type_id) = (%s, %s) WHERE id = %s"
-    values = [staff_session_type.staff.id, staff_session_type.session_type.id, staff_session_type.id]
+    values = [staff_session_type.staff_member.id, staff_session_type.session_type.id, staff_session_type.id]
     run_sql(sql, values)
