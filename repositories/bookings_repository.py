@@ -1,8 +1,10 @@
 from db.run_sql import run_sql
-from models.booking import booking
-from models.customer import customer
+from models.booking import Booking
+
+from models.customer import Customer
 import repositories.customer_repository as customer_repository
-from models.session import session
+
+from models.session import Session
 import repositories.session_repository as session_repository
 
 def save(booking):
@@ -20,7 +22,7 @@ def select_all():
     for result in results:
         customer = customer_repository.select(result["customer_id"])
         session = session_repository.select(result["session_id"])
-        booking = booking(session, customer, result["id"])
+        booking = Booking(session, customer, result["id"])
         bookings.append(booking)
     return bookings
 
@@ -34,7 +36,7 @@ def select(id):
         result = results[0]
         customer = customer_repository.select(result["customer_id"])
         session = session_repository.select(result["session_id"])
-        booking = booking(customer, session, result["id"])
+        booking = Booking(customer, session, result["id"])
     return booking
 
 
