@@ -15,13 +15,13 @@ def select_all():
     results = run_sql(sql)
     for result in results:
         customer = Customer(result["name"], result["id"])
-        humans.append(human)
-    return humans
+        customers.append(customer)
+    return customers
 
 
 def select(id):
-    human = None 
-    sql = "SELECT * FROM humans WHERE id = %s"
+    customer = None 
+    sql = "SELECT * FROM customers WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
     # checking if the list returned by `run_sql(sql, values)` is empty. Empty lists are 'fasly' 
@@ -29,22 +29,22 @@ def select(id):
     # if len(results) > 0 
     if results:
         result = results[0]
-        human = Human(result["name"], result["id"])
-    return human
+        customer = customer(result["name"], result["id"])
+    return customer
 
 
 def delete_all():
-    sql = "DELETE FROM humans"
+    sql = "DELETE FROM customers"
     run_sql(sql)
 
 
 def delete(id):
-    sql = "DELETE FROM humans WHERE id = %s"
+    sql = "DELETE FROM customers WHERE id = %s"
     values = [id]
     run_sql(sql, values)
 
 
-def update(human):
-    sql = "UPDATE humans SET name = %s WHERE id = %s"
-    values = [human.name, human.id]
+def update(customer):
+    sql = "UPDATE customers SET name = %s WHERE id = %s"
+    values = [customer.name, customer.id]
     run_sql(sql, values)

@@ -1,5 +1,5 @@
 class Session:
-    def __init__(self, name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor, instructor_payment, room, id=None):
+    def __init__(self, name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor, instructor_payment, room, session_type, id=None):
         self.name = name
         self.date_and_time = date_and_time
         self.duration = duration
@@ -11,4 +11,5 @@ class Session:
         self.instructor = instructor
         self.instructor_payment = instructor_payment
         self.room = room
+        self.session_type = session_type
         self.id = id

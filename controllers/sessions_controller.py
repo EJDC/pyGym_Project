@@ -30,7 +30,8 @@ def create_session():
     instructor = request.form["instructor"]
     instructor_payment = request.form["instructor_payment"]
     room = request.form["room"]
-    new_session = Session(name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor, instructor_payment, room)
+    session_type = request.form["session_type"]
+    new_session = Session(name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor, instructor_payment, room, session_type)
     session_repository.save(new_session)
     return redirect("/sessions")
     
@@ -54,7 +55,8 @@ def update_session(id):
     instructor = request.form["instructor"]
     instructor_payment = request.form["instructor_payment"]
     room = request.form["room"]
-    updated_session = Session(name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor, instructor_payment, room)
+    session_type = request.form["session_type"]
+    updated_session = Session(name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor, instructor_payment, room, session_type)
     session_repository.save(updated_session)
     return redirect("/sessions")
 
