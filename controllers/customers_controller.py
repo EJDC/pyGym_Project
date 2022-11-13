@@ -33,7 +33,7 @@ def create_customer():
     # missed_classes = missed_classes
     # monthly_bill = monthly_bill
     # id = id
-    new_customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4,)
+    new_customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4)
     customer_repository.save(new_customer)
     return redirect("/customers")
 
@@ -61,8 +61,8 @@ def update_customer(id):
     # missed_classes = missed_classes
     # monthly_bill = monthly_bill
     # id = id
-    customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4,)
-    customer_repository.update(customer)
+    updated_customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4)
+    customer_repository.update(updated_customer)
     return redirect("/customers")
 
 
