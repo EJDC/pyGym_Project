@@ -3,6 +3,9 @@ from flask import Blueprint, Flask, redirect, render_template, request
 from models.customer import Customer
 import repositories.customer_repository as customer_repository
 
+from models.booking import Booking
+import repositories.bookings_repository as bookings_respository
+
 customers_blueprint = Blueprint("customers", __name__)
 
 # INDEX
@@ -54,21 +57,21 @@ def update_customer(id):
     membership_level = request.form["membership_level"]
     membership_status = request.form["membership_status"]
     payment_method = request.form["payment_method"]
-    extra_physio = request.form["extra_physio"]
-    extra_pt = request.form["extra_pt"]
-    extra_service_3 = request.form["extra_service_3"]
-    extra_service_4 = request.form["extra_service_4"]
-    # missed_classes = missed_classes
-    # monthly_bill = monthly_bill
-    # id = id
-    updated_customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4)
+    extra_physio = request.form.get("extra_physio")
+    extra_pt = request.form.get("extra_pt")
+    extra_service_3 = request.form.get("extra_service_3")
+    extra_service_4 = request.form.get("extra_service_4")
+    missed_classes = request.form["missed_classes"]
+    monthly_bill = request.form["monthly_bill"]
+    updated_customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4, missed_classes, monthly_bill, id)
     customer_repository.update(updated_customer)
-    return redirect("/customers")
+    return redirect(request.referrer)
 
 @customers_blueprint.route("/customers/<id>")
 def show_customer(id):
     customer = customer_repository.select(id)
-    return render_template('customers/customer_profile.html', customer = customer)
+    bookings = customer_repository.select_customers_bookings(id)
+    return render_template('customers/customer_profile.html', customer = customer, bookings = bookings)
 
 # DELETE
 @customers_blueprint.route("/customers/<id>/delete", methods=["POST"])
