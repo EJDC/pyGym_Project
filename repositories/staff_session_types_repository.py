@@ -5,7 +5,7 @@ from models.staff import Staff
 import repositories.staff_repository as staff_repository
 
 from models.session_type import SessionType
-import repositories.session_repository as session_type_repository
+import repositories.session_type_repository as session_type_repository
 
 def save(staff_session_type):
     sql = "INSERT INTO staff_session_types (staff_id, session_type_id) VALUES (%s, %s) RETURNING id"
@@ -22,7 +22,7 @@ def select_all():
     for result in results:
         staff = staff_repository.select(result["staff_id"])
         session_type = session_type_repository.select(result["session_type_id"])
-        staff_session_type = staff_session_type(session_type, staff, result["id"])
+        staff_session_type = StaffSessionType(staff, session_type, result["id"])
         staff_session_types.append(staff_session_type)
     return staff_session_types
 

@@ -22,7 +22,7 @@ def select_all():
     for result in results:
         customer = customer_repository.select(result["customer_id"])
         session = session_repository.select(result["session_id"])
-        booking = Booking(session, customer, result["id"])
+        booking = Booking(customer, session, result["id"])
         bookings.append(booking)
     return bookings
 

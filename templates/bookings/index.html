@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>All Bookings</h2>
+
+{% for booking in bookings %}
+
+<section>
+    <ul>
+        <li>
+            <a href="/sessions/{{booking.session.id}}"> {{booking.session.name }}</a> 
+        </li>
+        <li>
+            {{ booking.session.date_and_time }}
+        </li>
+        <li>
+            <a href = "/customers/{{booking.customer.id}}"> {{ booking.customer.first_name }} {{ booking.customer.last_name}} </a>
+        </li>
+    </ul>
+</section>
+
+{% endfor %}
+{% endblock %}

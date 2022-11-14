@@ -3,13 +3,17 @@ from flask import Blueprint, Flask, redirect, render_template, request
 from models.staff import Staff
 import repositories.staff_repository as staff_repository
 
+from models.staff_session_type import StaffSessionType
+import repositories.staff_session_types_repository as staff_session_types_repository
+
 staff_blueprint = Blueprint("staff", __name__)
 
 # INDEX
 @staff_blueprint.route("/staff")
 def staff():
     staff = staff_repository.select_all()
-    return render_template("staff/index.html", staff=staff)
+    staff_session_types = staff_session_types_repository.select_all()
+    return render_template("staff/index.html", staff=staff, staff_session_types = staff_session_types)
 
 # NEW
 @staff_blueprint.route("/staff/new")

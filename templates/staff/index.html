@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>All Staff</h2>
+
+{% for staff_member in staff %}
+
+<section>
+    <ul>
+        <li>
+            <h3><a href="/staff/{{staff_member.id}}"> {{staff_member.first_name }} {{ staff_member.last_name }} </a></h3>
+            {% for staff_session_type in staff_session_types %}
+                {% if staff_session_type.staff_member.id == staff_member.id %}
+            {{staff_session_type.session_type.name}}
+                    {% endif %}
+            {% endfor %}
+        </li>
+    </ul>
+</section>
+
+{% endfor %}
+
+
+<!-- {% for staff_session_type in staff_session_types %}
+
+<li>
+    {{staff_session_type.staff_member.first_name }}   {{staff_session_type.staff_member.last_name }}
+    {{staff_session_type.session_type.name}}
+</li>
+
+{% endfor %}
+{% endblock %} -->
