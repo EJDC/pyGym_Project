@@ -29,11 +29,11 @@
             <label for="membership_level">Membership Level</label>
             <select id="membership_level" name="membership_level">
 
-                <option value="standard" {% if customer.membership_level=="Standard" %} selected="selected" {% endif %}>
+                <option value="Standard" {% if customer.membership_level=="Standard" %} selected="selected" {% endif %}>
                     Standard
                 </option>
 
-                <option value="premium" {% if customer.membership_level=="Premium" %} selected="selected" {% endif %}>
+                <option value="Premium" {% if customer.membership_level=="Premium" %} selected="selected" {% endif %}>
                     Premium
                 </option>
             </select>
@@ -43,11 +43,11 @@
             <label for="membership_status">Membership Status</label>
             <select id="membership_status" name="membership_status">
 
-                <option value="active" {% if customer.membership_status=="Active" %} selected="selected" {% endif %}>
+                <option value="Active" {% if customer.membership_status=="Active" %} selected="selected" {% endif %}>
                     Active
                 </option>
 
-                <option value="deactivated" {% if customer.membership_status=="Deactivated" %} selected="selected" {%
+                <option value="Deactivated" {% if customer.membership_status=="Deactivated" %} selected="selected" {%
                     endif %}>
                     Deactivated
                 </option>
@@ -59,17 +59,17 @@
             <label for="payment_method">Payment Method</label>
             <select id="payment_method" name="payment_method">
 
-                <option value="direct_debit" {% if customer.payment_method=="Direct Debit" %} selected="selected" {%
+                <option value="Direct Debit" {% if customer.payment_method=="Direct Debit" %} selected="selected" {%
                     endif %}>
                     Direct Debit
                 </option>
 
-                <option value="card_payment" {% if customer.payment_method=="Card Payment" %} selected="selected" {%
+                <option value="Card Payment" {% if customer.payment_method=="Card Payment" %} selected="selected" {%
                     endif %}>
                     Card Payment
                 </option>
 
-                <option value="card_payment" {% if customer.payment_method=="Cash" %} selected="selected" {% endif %}>
+                <option value="Cash" {% if customer.payment_method=="Cash" %} selected="selected" {% endif %}>
                     Cash
                 </option>
             </select>
@@ -106,6 +106,11 @@
             <button type="submit">Update Customer</button>
         </div>
     </form>
+    <div>
+        <form action="/customers/{{ customer.id }}/delete" method="POST">
+            <input type="submit" value="Delete Customer">
+        </form>
+    </div>
 </section>
 
 <section>
@@ -120,6 +125,9 @@
             <li>
                 {{booking.duration}}
             </li>
+            <li>
+                <!-- <form action="/bookings/{{ booking.id }}/delete" method="POST">
+                    <input type="submit" value="Delete Customer">            </li> -->
         </ul>
     {% endfor %}
 </section>

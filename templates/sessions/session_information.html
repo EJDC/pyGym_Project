@@ -103,4 +103,20 @@
     </div>
 </section>
 
+<section>
+    {% for attendee in attendees %}
+        <ul>
+            <li>
+                <a href="/customers/{{attendee.id}}"> {{ attendee.first_name }} {{attendee.last_name}} </a>
+            </li>
+            <li>
+                {{ attendee.dob }} </a>
+            </li>
+            <li>
+                {{ attendee.membership_level}}
+            </li>
+        </ul>
+    {% endfor %}
+</section>
+
 {% endblock %}

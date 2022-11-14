@@ -75,8 +75,8 @@ def show_(id):
     staff = staff_repository.select_all()
     rooms = room_repository.select_all()
     session_types = session_type_repository.select_all()
-    # bookings = customer_repository.select_sessions_customers(id)
-    return render_template('sessions/session_information.html', session = session, staff = staff, rooms=rooms, session_types = session_types)
+    attendees = session_repository.select_customers_attending_session(id)
+    return render_template('sessions/session_information.html', session = session, staff = staff, rooms=rooms, session_types = session_types, attendees = attendees)
     # , bookings = bookings)
 
 # DELETE
