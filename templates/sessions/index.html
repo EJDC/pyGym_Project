@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>All Sessions</h2>
+
+{% for session in sessions %}
+
+<section>
+    <ul>
+        <li>
+            <a href="/sessions/{{session.id}}"> {{ session.name }} </a>
+        </li>
+        <li>
+            {{ session.date_and_time }} </a>
+        </li>
+        <li>
+            {{session.duration}}
+        </li>
+        <li>
+            {{session.instructor.first_name}}
+        </li>
+        <li>
+            {{session.room.name}}
+        </li>
+    </ul>
+</section>
+
+{% endfor %}
+{% endblock %}
+
+
+<!-- <a href="/customers/{{ customer.id }}/edit"></a>
+<form action="/customers/{{ customer.id }}/delete" method="POST">
+    <input type="submit" value="Delete">
+</form> -->

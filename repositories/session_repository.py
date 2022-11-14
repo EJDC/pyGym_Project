@@ -51,6 +51,10 @@ def delete(id):
 
 
 def update(session):
-    sql = "UPDATE sessions SET (name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor_id, instructor_payment, room, session_type) = (%s, %s, %s, %s, %s, %s,%s, %s,%s,%s, %s, %s) WHERE id = %s"
-    values = [session.name, session.date_and_time, session.duration, session.min_age, session.max_age, session.p_member_price, session.s_member_price, session.max_capacity, session.instructor.id, session.instructor_payment, session.room.id, session.session_type, session.id]
+    # sql = "UPDATE sessions SET (name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor_id, instructor_payment, room, session_type) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
+    # values = [session.name, session.date_and_time, session.duration, session.min_age, session.max_age, session.p_member_price, session.s_member_price, session.max_capacity, session.staff_member.id, session.instructor_payment, session.room.id, session.session_type.id, session.id]
+    # run_sql(sql, values)
+
+    sql = "UPDATE sessions SET (name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor_id, instructor_payment, room, session_type) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [session.name, session.date_and_time, session.duration, session.min_age, session.max_age, session.p_member_price, session.s_member_price, session.max_capacity, session.instructor.id, session.instructor_payment, session.room.id, session.session_type.id, session.id]
     run_sql(sql, values)

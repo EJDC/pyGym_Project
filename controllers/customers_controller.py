@@ -67,6 +67,7 @@ def update_customer(id):
     customer_repository.update(updated_customer)
     return redirect(request.referrer)
 
+# SHOW
 @customers_blueprint.route("/customers/<id>")
 def show_customer(id):
     customer = customer_repository.select(id)
