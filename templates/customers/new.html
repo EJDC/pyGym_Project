@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2> New Customer </h2>
+
+<section>
+    <form action="/customers" method="post">
+        <div>
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name"  required autofocus>
+        </div>
+
+        <div>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name"  required autofocus>
+        </div>
+
+        <div>
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob"  required autofocus>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required autofocus>
+        </div>
+
+        <div>
+            <label for="membership_level">Membership Level</label>
+            <select id="membership_level" name="membership_level">
+
+                <option value="Standard">
+                    Standard
+                </option>
+
+                <option value="Premium">
+                    Premium
+                </option>
+            </select>
+        </div>
+
+        <div>
+            <label for="membership_status">Membership Status</label>
+            <select id="membership_status" name="membership_status">
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Deactivated">
+                    Deactivated
+                </option>
+
+            </select>
+        </div>
+
+        <div>
+            <label for="payment_method">Payment Method</label>
+            <select id="payment_method" name="payment_method">
+
+                <option value="Direct Debit">
+                    Direct Debit
+                </option>
+
+                <option value="Card Payment">
+                    Card Payment
+                </option>
+
+                <option value="Cash">
+                    Cash
+                </option>
+            </select>
+        </div>
+
+        <div>
+            <input type="checkbox" id="extra_physio" name="extra_physio">
+            <label for="extra_physio">Extra Physio</label><br>
+            <input type="checkbox" id="extra_pt" name="extra_pt" value="True" >
+            <label for="extra_pt">Extra PT</label><br>
+            <input type="checkbox" id="extra_service_3" name="extra_service_3" value="True">
+            <label for="extra_service_3">Extra Service3</label><br>
+            <input type="checkbox" id="extra_service_4" name="extra_service_4" value="True">
+            <label for="extra_service_4">Extra Service4</label><br>
+        </div>
+
+        <div>
+            <button type="submit">Create Customer</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

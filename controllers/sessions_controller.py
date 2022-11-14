@@ -77,7 +77,6 @@ def show_(id):
     session_types = session_type_repository.select_all()
     attendees = session_repository.select_customers_attending_session(id)
     return render_template('sessions/session_information.html', session = session, staff = staff, rooms=rooms, session_types = session_types, attendees = attendees)
-    # , bookings = bookings)
 
 # DELETE
 @sessions_blueprint.route("/sessions/<id>/delete", methods=["POST"])

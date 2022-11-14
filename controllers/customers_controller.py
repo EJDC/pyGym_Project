@@ -29,10 +29,10 @@ def create_customer():
     membership_level = request.form["membership_level"]
     membership_status = request.form["membership_status"]
     payment_method = request.form["payment_method"]
-    extra_physio = request.form["extra_physio"]
-    extra_pt = request.form["extra_pt"]
-    extra_service_3 = request.form["extra_service_3"]
-    extra_service_4 = request.form["extra_service_4"]
+    extra_physio = request.form.get("extra_physio")
+    extra_pt = request.form.get("extra_pt")
+    extra_service_3 = request.form.get("extra_service_3")
+    extra_service_4 = request.form.get("extra_service_4")
     # missed_classes = missed_classes
     # monthly_bill = monthly_bill
     # id = id
