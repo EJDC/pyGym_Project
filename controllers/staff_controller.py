@@ -23,8 +23,10 @@ def new_staff_member():
 # CREATE
 @staff_blueprint.route("/staff", methods=["POST"])
 def create_staff_member():
-    name = request.form["name"]
-    new_staff_member = Staff(name)
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    email = request.form["email"]
+    new_staff_member = Staff(first_name, last_name, email)
     staff_repository.save(new_staff_member)
     return redirect("/staff")
 

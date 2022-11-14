@@ -11,7 +11,9 @@ bookings_blueprint = Blueprint("bookings", __name__)
 @bookings_blueprint.route("/bookings")
 def bookings():
     bookings = bookings_repository.select_all()
-    return render_template("bookings/index.html", bookings=bookings)
+    customers = customer_repository.select_all()
+    sessions = session_repository.select_all()
+    return render_template("bookings/index.html", bookings=bookings, sessions = sessions, customers = customers)
 
 # NEW
 @bookings_blueprint.route("/bookings/new")
@@ -28,10 +30,24 @@ def create_booking():
     session_id = request.form["session_id"]
     customer = customer_repository.select(customer_id)
     session = session_repository.select(session_id)
-    new_booking = Booking(customer, session)
-    bookings_repository.save(new_booking)
-    return redirect("/bookings")
-
+    bookings = bookings_repository.select_all()
+    # Check if customer is active or deactivated.
+    if customer.membership_status == "Deactivated":
+        return redirect("https://http.cat/401")
+    else:
+        current_occupancy = bookings_repository.capacity_check(session)
+        # Check if space in class.
+        if current_occupancy + 1 > session.max_capacity:
+            return redirect("https://http.cat/401")
+        else:
+    # check if booking is already made
+            for booking in bookings:
+                if str(booking.customer.id) == customer_id and str(booking.session.id) == session_id:
+                    return  redirect("https://http.cat/401")
+                else:
+                    new_booking = Booking(customer, session)
+                    bookings_repository.save(new_booking)
+                    return redirect("/bookings")
 
 # EDIT
 @bookings_blueprint.route("/bookings/<id>/edit")

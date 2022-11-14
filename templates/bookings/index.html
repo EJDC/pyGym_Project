@@ -1,6 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h2>Create New Booking</h2>
+<form action="/bookings" method="POST">
+    <div>
+        <label for="customer">Customer</label>
+        <select name="customer_id" id="customer">
+            {% for customer in customers %}
+            <option value="{{ customer.id }}">
+                {{ customer.first_name }} {{customer.last_name}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="session">Session</label>
+        <select name="session_id" id="session">
+            {% for session in sessions %}
+            <option value="{{ session.id }}">
+                {{ session.name }} {{session.date_and_time}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+
 <h2>All Bookings</h2>
 
 {% for booking in bookings %}

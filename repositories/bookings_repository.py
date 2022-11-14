@@ -55,3 +55,16 @@ def update(booking):
     sql = "UPDATE bookings SET (customer_id, session_id) = (%s, %s) WHERE id = %s"
     values = [booking.customer.id, booking.session.id, booking.id]
     run_sql(sql, values)
+
+def capacity_check(session):
+    bookings = []
+    sql = "SELECT * FROM bookings WHERE session_id = %s"
+    sessionid = str(session.id)
+    values = [sessionid]
+    results = run_sql(sql, values)
+    for result in results:
+        customer = customer_repository.select(result["customer_id"])
+        session = session_repository.select(result["session_id"])
+        booking = Booking(customer, session, result["id"])
+        bookings.append(booking)
+    return len(bookings)
