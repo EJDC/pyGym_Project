@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>All Customers</h2>
+
+{% for customer in customers %}
+
+<section>
+    <ul>
+        <li>
+            <a href="/customers/{{customer.id}}"> {{ customer.first_name }} </a>
+        </li>
+        <li>
+            <a href="/customers/{{customer.id}}"> {{ customer.last_name }} </a>
+        </li>
+        <li>
+            {{customer.dob}}
+        </li>
+        <li>
+            {{customer.membership_level}}
+        </li>
+        <li>
+            {{customer.membership_status}}
+        </li>
+    </ul>
+</section>
+
+{% endfor %}
+{% endblock %}
+
+
+<!-- <a href="/customers/{{ customer.id }}/edit"></a>
+<form action="/customers/{{ customer.id }}/delete" method="POST">
+    <input type="submit" value="Delete">
+</form> -->

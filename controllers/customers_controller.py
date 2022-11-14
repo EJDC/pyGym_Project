@@ -65,6 +65,10 @@ def update_customer(id):
     customer_repository.update(updated_customer)
     return redirect("/customers")
 
+@customers_blueprint.route("/customers/<id>")
+def show_customer(id):
+    customer = customer_repository.select(id)
+    return render_template('customers/customer_profile.html', customer = customer)
 
 # DELETE
 @customers_blueprint.route("/customers/<id>/delete", methods=["POST"])

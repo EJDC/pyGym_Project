@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>pyGym</title>
+</head>
+<body>
+    <header>
+        <h1>pyGym</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Dashboard</a></li>
+                <li>
+                    Customers
+                    <ul>
+                        <li><a href="/customers">All Customers</a></li>
+                        <li><a href="/customers/new">Add New Customer</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Sessions
+                    <ul>
+                        <li><a href="/sessions">All Sessions</a></li>
+                        <li><a href="/sessions/new">Add New Session</a></li>
+                        <li><a href="/session_types">Session Categories</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Staff
+                    <ul>
+                        <li><a href="/staff">All Staff</a></li>
+                        <li><a href="/staff/new">Add New Staff</a></li>
+                        <li><a href="/staff_session_types">Staff Training</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Rooms
+                    <ul>
+                        <li><a href="/rooms">All Rooms</a></li>
+                        <li><a href="/staff/new">Add New Room</a></li>
+                        <li><a href="/room_session_types">Room Session Settings</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Bookings
+                    <ul>
+                        <li><a href="/bookings">All Bookings</a></li>
+                        <li><a href="/bookings/new">Add New Booking</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
