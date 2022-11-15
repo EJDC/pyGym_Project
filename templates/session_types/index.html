@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Session Types</h2>
+
+<h2>Add Session Type to Room</h2>
+<form action="/room_session_types" method="POST">
+    <div>
+        <label for="room">Room</label>
+        <select name="room_id" id="room_id">
+            {% for room in rooms %}
+            <option value="{{ room.id }}">
+                {{ room.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="session_type_id">Session Type</label>
+        <select name="session_type_id" id="session_type_id">
+            {% for session_type in session_types %}
+            <option value="{{ session_type.id }}">
+                {{ session_type.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <input type="submit" value = "Add Type">
+    </div>
+</form>
+
+<h2>Add Session Type to Staff</h2>
+<form action="/staff_session_types" method="POST">
+    <div>
+        <label for="staff_id">Staff Member</label>
+        <select name="staff_id" id="staff_id">
+            {% for staff_member in staff %}
+            <option value="{{ staff_member.id }}">
+                {{ staff_member.first_name }} {{staff_member.last_name}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="session_type_id">Session Type</label>
+        <select name="session_type_id" id="session_type_id">
+            {% for session_type in session_types %}
+            <option value="{{ session_type.id }}">
+                {{ session_type.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <input type="submit" value = "Add Type">
+    </div>
+</form>
+
+<h2> Add New Session Type </h2>
+<section>
+    <form action="/session_types" method="post">
+        <div>
+            <label for="name"> Name</label>
+            <input type="text" id="name" name="name"  required>
+        </div>
+        <div>
+            <button type="submit">Create Room</button>
+        </div>
+    </form>
+</section>
+
+
+
+
+
+
+{% for session_type in session_types %}
+
+<h3> {{session_type.name}} </h3>
+
+<section>
+    <ul>
+        <h4>Rooms</h4>
+        {% for room_session_type in room_session_types %}
+        {% if room_session_type.session_type.id == session_type.id %}
+        <li>{{room_session_type.room.name}}
+            <form action="/room_session_types/{{ room_session_type.id }}/delete" method="POST">
+                <input type="submit" value="Remove">
+            </form>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul>
+        <h4>Staff</h4>
+        {% for staff_session_type in staff_session_types %}
+        {% if staff_session_type.session_type.id == session_type.id %}
+        <li>{{staff_session_type.staff_member.first_name}}
+            <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
+                <input type="submit" value="Remove">
+            </form>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <br>
+</section>
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}

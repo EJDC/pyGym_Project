@@ -6,22 +6,22 @@
     <form action="/customers/{{customer.id}}" method="post">
         <div>
             <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" value="{{customer.first_name}}" required autofocus>
+            <input type="text" id="first_name" name="first_name" value="{{customer.first_name}}" required>
         </div>
 
         <div>
             <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" value="{{customer.last_name}}" required autofocus>
+            <input type="text" id="last_name" name="last_name" value="{{customer.last_name}}" required>
         </div>
 
         <div>
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" value="{{customer.dob}}" required autofocus>
+            <input type="date" id="dob" name="dob" value="{{customer.dob}}" required>
         </div>
 
         <div>
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" value="{{customer.email}}" required autofocus>
+            <input type="text" id="email" name="email" value="{{customer.email}}" required>
         </div>
 
         <div>
@@ -92,13 +92,13 @@
         <div>
             <label for="missed_classes">Missed Classes</label>
             <input type="number" id="missed_classes" name="missed_classes" value="{{customer.missed_classes}}" required
-                autofocus>
+            >
         </div>
 
         <div>
             <label for="monthly_bill">Monthly Bill</label>
             <input type="number" min="0" step="any" id="monthly_bill" name="monthly_bill"
-                value="{{customer.monthly_bill}}" required autofocus>
+                value="{{customer.monthly_bill}}" required>
         </div>
 
         <div>

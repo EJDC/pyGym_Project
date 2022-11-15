@@ -7,48 +7,62 @@
     <form action="/sessions/{{session.id}}" method="post">
         <div>
             <label for="name">Session Name</label>
-            <input type="text" id="name" name="name" value="{{session.name}}" required autofocus>
+            <input type="text" id="name" name="name" value="{{session.name}}" required>
         </div>
 
         <div>
             <label for="date_and_time">Date and Time</label>
             <input type="datetime-local" id="date_and_time" name="date_and_time" value="{{session.date_and_time}}"
-                required autofocus>
+                required>
         </div>
 
         <div>
             <label for="duration">Duration</label>
             <input type="number" min="0" max="180" step="5" id="duration" name="duration" value="{{session.duration}}"
-                required autofocus>
+                required>
         </div>
 
         <div>
             <label for="min_age">Minimum Age</label>
             <input type="number" min="0" max="99" step="1" id="min_age" name="min_age" value="{{session.min_age}}"
-                required autofocus>
+                required>
         </div>
 
         <div>
             <label for="max_age">Maximum Age</label>
             <input type="number" min="0" max="99" step="1" id="max_age" name="max_age" value="{{session.max_age}}"
-                required autofocus>
+                required>
         </div>
         <div>
             <label for="p_member_price">Premium Member Price</label>
             <input type="number" min="0" step="any" id="p_member_price" name="p_member_price"
-                value="{{session.p_member_price}}" required autofocus>
+                value="{{session.p_member_price}}" required>
         </div>
 
         <div>
             <label for="s_member_price">Standard Member Price</label>
             <input type="number" min="0" step="any" id="s_member_price" name="s_member_price"
-                value="{{session.s_member_price}}" required autofocus>
+                value="{{session.s_member_price}}" required>
         </div>
 
         <div>
             <label for="max_capacity">Maximum Capacity</label>
             <input type="number" min="0" max="99" step="1" id="max_capacity" name="max_capacity"
-                value="{{session.max_capacity}}" required autofocus>
+                value="{{session.max_capacity}}" required>
+        </div>
+
+        <div>
+            <label for="instructor_payment">Instructor Payment</label>
+            <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment"
+                value="{{session.instructor_payment}}" required>
+        </div>
+
+        <div>
+                {% for session_type in session_types %}
+                    {% if session.session_type.id==session_type.id %}
+                    Session Type: {{ session_type.name}}
+                    {% endif %}
+                {% endfor %}
         </div>
         <div>
             <label for="instructor">Instructor</label>
@@ -61,29 +75,13 @@
                 {% endfor %}
             </select>
         </div>
-        <div>
-            <label for="instructor_payment">Instructor Payment</label>
-            <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment"
-                value="{{session.instructor_payment}}" required autofocus>
-        </div>
+
         <div>
             <label for="room">Room</label>
             <select id="room" name="room_id">
                 {% for room in rooms %}
                 <option value="{{ room.id }}" {% if session.room.id==room.id %} selected="selected" {% endif %}>
                     {{ room.name }}
-                </option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div>
-            <label for="session_type">Session Type</label>
-            <select id="session_type" name="session_type_id">
-                {% for session_type in session_types %}
-                <option value="{{ session_type.id }}" {% if session.session_type.id==session_type.id %}
-                    selected="selected" {% endif %}>
-                    {{ session_type.name }}
                 </option>
                 {% endfor %}
             </select>

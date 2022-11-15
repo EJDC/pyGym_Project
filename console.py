@@ -115,8 +115,8 @@ room_session_types_repository.save(room_session_type4)
 room_session_type5 = RoomSessionType(room3, session_type2)
 room_session_types_repository.save(room_session_type5)
 
-room_session_type5 = RoomSessionType(room4, session_type4)
-room_session_types_repository.save(room_session_type4)
+room_session_type6 = RoomSessionType(room4, session_type4)
+room_session_types_repository.save(room_session_type6)
 
 # STAFF SESSION TYPES
 
