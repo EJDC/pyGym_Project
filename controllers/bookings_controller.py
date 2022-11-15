@@ -35,11 +35,12 @@ def create_booking():
     if customer.membership_status == "Deactivated":
         return redirect("https://http.cat/401")
     else:
-        current_occupancy = bookings_repository.capacity_check(session)
         # Check if space in class.
+        current_occupancy = bookings_repository.capacity_check(session)
         if current_occupancy + 1 > session.max_capacity:
             return redirect("https://http.cat/401")
         else:
+            # Check if booking is duplicate 
             for booking in bookings:
                 booking_customer_id = str(booking.customer.id)
                 session_customer_id = str(booking.session.id)

@@ -27,9 +27,15 @@ def create_room_session_type():
     session_id = request.form["session_type_id"]
     room = room_repository.select(room_id)
     session_type = session_type_repository.select(session_id)
+    room_session_types = room_session_types_repository.select_all()
+    for room_session_type in room_session_types:
+        room_session_type_room_id = str(room_session_type.room.id)
+        room_session_type_session_type_id = str(room_session_type.session_type.id)
+        if room_session_type_room_id == room_id and room_session_type_session_type_id == session_id:
+            return  redirect("https://http.cat/401")
     new_room_session_type = RoomSessionType(room, session_type)
     room_session_types_repository.save(new_room_session_type)
-    return redirect("/room_session_types")
+    return redirect(request.referrer)
 
 
 # EDIT
@@ -57,4 +63,4 @@ def update_room_session_type(id):
 @room_session_types_blueprint.route("/room_session_types/<id>/delete", methods=["POST"])
 def delete_room_session_type(id):
     room_session_types_repository.delete(id)
-    return redirect("/room_session_types")
+    return redirect(request.referrer)

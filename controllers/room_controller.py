@@ -3,13 +3,21 @@ from flask import Blueprint, Flask, redirect, render_template, request
 from models.room import Room
 import repositories.room_repository as room_repository
 
+from models.room_session_type import RoomSessionType
+import repositories.room_session_types_repository as room_session_types_repository
+
+from models.session_type import SessionType
+import repositories.session_type_repository as session_type_repository
+
 rooms_blueprint = Blueprint("rooms", __name__)
 
 # INDEX
 @rooms_blueprint.route("/rooms")
 def rooms():
     rooms = room_repository.select_all()
-    return render_template("rooms/index.html", rooms=rooms)
+    room_session_types = room_session_types_repository.select_all()
+    session_types = session_type_repository.select_all()
+    return render_template("rooms/index.html", rooms=rooms, room_session_types = room_session_types, session_types = session_types)
 
 # NEW
 @rooms_blueprint.route("/rooms/new")

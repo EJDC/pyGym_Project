@@ -5,7 +5,7 @@ from models.room import Room
 import repositories.room_repository as room_repository
 
 from models.session_type import SessionType
-import repositories.session_repository as session_type_repository
+import repositories.session_type_repository as session_type_repository
 
 def save(room_session_type):
     sql = "INSERT INTO room_session_types (room_id, session_type_id) VALUES (%s, %s) RETURNING id"
@@ -22,7 +22,7 @@ def select_all():
     for result in results:
         room = room_repository.select(result["room_id"])
         session_type = session_type_repository.select(result["session_type_id"])
-        room_session_type = room_session_type(session_type, room, result["id"])
+        room_session_type = RoomSessionType(room, session_type, result["id"])
         room_session_types.append(room_session_type)
     return room_session_types
 
