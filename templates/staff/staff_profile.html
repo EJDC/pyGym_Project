@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2> Staff Profile </h2>
+
+<h3><a href="/staff/{{staff.id}}"> {{ staff.first_name }} {{ staff.last_name }} </a></h3>
+
+<section>
+    <ul>
+        {% for staff_session_type in staff_session_types %}
+        {% if staff_session_type.staff_member.id == staff.id %}
+        <li>{{staff_session_type.session_type.name}}</li>
+        {% endif %}
+        {% endfor %}
+
+    </ul>
+</section>
+
+
+<section>
+    <form action="/staff/{{staff.id}}" method="post">
+        <div>
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" value="{{staff.first_name}}" required autofocus>
+        </div>
+
+        <div>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" value="{{staff.last_name}}" required autofocus>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="{{staff.email}}" required autofocus>
+        </div>
+
+        <div>
+            <label for="monthly_invoice">Monthly Invoice</label>
+            <input type="number" min="0" step="any" id="monthly_invoice" value={{staff.monthly_invoice}}
+                name="monthly_invoice" required autofocus>
+        </div>
+
+        <div>
+            <button type="submit">Update Staff Member</button>
+        </div>
+    </form>
+    <div>
+        <form action="/staff/{{ staff.id }}/delete" method="POST">
+            <input type="submit" value="Delete Staff Member">
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -17,7 +17,8 @@ def sessions():
 # NEW
 @sessions_blueprint.route("/sessions/new")
 def new_session():
-    return render_template("sessions/new.html")
+    session_types = session_type_repository.select_all()
+    return render_template("sessions/new.html", session_types = session_types)
 
 # CREATE
 @sessions_blueprint.route("/sessions", methods=["POST"])
@@ -69,6 +70,7 @@ def update_session(id):
     session_repository.update(updated_session)
     return redirect(request.referrer)
 
+# show
 @sessions_blueprint.route("/sessions/<id>")
 def show_(id):
     session = session_repository.select(id)

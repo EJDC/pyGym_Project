@@ -15,6 +15,12 @@ def staff():
     staff_session_types = staff_session_types_repository.select_all()
     return render_template("staff/index.html", staff=staff, staff_session_types = staff_session_types)
 
+@staff_blueprint.route("/staff/<id>")
+def show_(id):
+    staff = staff_repository.select(id)
+    staff_session_types = staff_session_types_repository.select_all()
+    return render_template('staff/staff_profile.html',  staff = staff, staff_session_types = staff_session_types)
+
 # NEW
 @staff_blueprint.route("/staff/new")
 def new_staff_member():
@@ -39,9 +45,12 @@ def edit_staff_member(id):
 
 # UPDATE
 @staff_blueprint.route("/staff/<id>", methods=["POST"])
-def update_staff_member(id):
-    name = request.form["name"]
-    updated_staff_member = Staff(name)
+def update_staff_member(id):   
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    email = request.form["email"]
+    monthly_invoice = request.form["monthly_invoice"]
+    updated_staff_member = Staff(first_name, last_name, email, monthly_invoice, id)
     staff_repository.update(updated_staff_member)
     return redirect("/staff")
 

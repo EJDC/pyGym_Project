@@ -12,42 +12,42 @@
 
         <div>
             <label for="date_and_time">Date and Time</label>
-            <input type="datetime-local" id="date_and_time" name="date_and_time"
+            <input type="datetime-local" id="date_and_time"  name="date_and_time"
                 required autofocus>
         </div>
 
         <div>
             <label for="duration">Duration</label>
-            <input type="number" min="0" max="180" step="5" id="duration" name="duration" 
+            <input type="number" min="0" max="180" step="5" id="duration" value = '45' name="duration" 
                 required autofocus>
         </div>
 
         <div>
             <label for="min_age">Minimum Age</label>
-            <input type="number" min="0" max="99" step="1" id="min_age" name="min_age" 
+            <input type="number" min="0" max="99" step="1" id="min_age" name="min_age" value = '0'
                 required autofocus>
         </div>
 
         <div>
             <label for="max_age">Maximum Age</label>
-            <input type="number" min="0" max="99" step="1" id="max_age" name="max_age" 
+            <input type="number" min="0" max="99" step="1" id="max_age" name="max_age" value = '99'
                 required autofocus>
         </div>
         <div>
             <label for="p_member_price">Premium Member Price</label>
-            <input type="number" min="0" step="any" id="p_member_price" name="p_member_price"
+            <input type="number" min="0" step="any" id="p_member_price" name="p_member_price" value="2.50"
                  required autofocus>
         </div>
 
         <div>
             <label for="s_member_price">Standard Member Price</label>
-            <input type="number" min="0" step="any" id="s_member_price" name="s_member_price"
+            <input type="number" min="0" step="any" id="s_member_price" name="s_member_price" value="5.99"
              required autofocus>
         </div>
 
         <div>
             <label for="max_capacity">Maximum Capacity</label>
-            <input type="number" min="0" max="99" step="1" id="max_capacity" name="max_capacity"
+            <input type="number" min="0" max="99" step="1" id="max_capacity" name="max_capacity" value="20"
              required autofocus>
         </div>
 
@@ -65,7 +65,7 @@
 
         <div>
             <label for="instructor_payment">Instructor Payment</label>
-            <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment"
+            <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment" value="49.99"
                required autofocus>
         </div>
 
@@ -84,8 +84,7 @@
             <label for="session_type">Session Type</label>
             <select id="session_type" name="session_type_id">
                 {% for session_type in session_types %}
-                <option value="{{ session_type.id }}" {% if session.session_type.id==session_type.id %}
-                    selected="selected" {% endif %}>
+                <option value="{{ session_type.id }}">
                     {{ session_type.name }}
                 </option>
                 {% endfor %}
@@ -97,3 +96,5 @@
         </div>
     </form>
 </section>
+
+{% endblock %}
