@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2> Customer Profile </h2>
-
+<h2> Customer Profile</h2>
 <section>
     <form action="/customers/{{customer.id}}" method="post">
         <div>
@@ -113,23 +112,51 @@
     </div>
 </section>
 
+<h2> Customer Bookings</h2>
 <section>
-    {% for booking in bookings %}
+    {% for session in sessions_booked %}
         <ul>
             <li>
-                <a href="/sessions/{{booking.id}}"> {{ booking.name }} </a>
+                <a href="/sessions/{{session.id}}"> {{ session.name }} </a>
             </li>
             <li>
-                {{ booking.date_and_time }} </a>
+                {{ session.date_and_time }} </a>
             </li>
             <li>
-                {{booking.duration}}
+                {{session.duration}}
             </li>
-                <!-- <form action="/bookings/{{ booking.id }}/delete" method="POST">
-                    <input type="submit" value="Delete Customer">            </li> -->
+                {% for booking in bookings %}
+                {% if booking.customer.id == customer.id and booking.session.id == session.id %}
+                <li><form action="/bookings/{{ booking.id }}/delete" method="POST">
+                    <input type="submit" value="Cancel Booking"></li></form>{% endif %}
+                {% endfor %}
         </ul>
     {% endfor %}
 </section>
 
+<h2>New Booking</h2>
+<form action="/bookings" method="POST">
+    <div>
+        <label for="customer">Customer</label>
+        <select name="customer_id" id="customer">
+            <option value="{{ customer.id }}">
+                {{ customer.first_name }} {{customer.last_name}}
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="session">Session</label>
+        <select name="session_id" id="session">
+            {% for session in sessions %}
+            <option value="{{ session.id }}">
+                {{ session.name }} {{session.date_and_time}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <input type= "submit" value= "Create Booking">
+    </div>
+</form>
 
 {% endblock %}

@@ -6,6 +6,9 @@ import repositories.customer_repository as customer_repository
 from models.booking import Booking
 import repositories.bookings_repository as bookings_respository
 
+from models.session import Session
+import repositories.session_repository as session_respository
+
 customers_blueprint = Blueprint("customers", __name__)
 
 # INDEX
@@ -71,8 +74,10 @@ def update_customer(id):
 @customers_blueprint.route("/customers/<id>")
 def show_customer(id):
     customer = customer_repository.select(id)
-    bookings = customer_repository.select_customers_bookings(id)
-    return render_template('customers/customer_profile.html', customer = customer, bookings = bookings)
+    sessions_booked = customer_repository.select_customers_bookings(id)
+    sessions = session_respository.select_all()
+    bookings = bookings_respository.select_all()
+    return render_template('customers/customer_profile.html', customer = customer, sessions_booked = sessions_booked, sessions = sessions,bookings = bookings)
 
 # DELETE
 @customers_blueprint.route("/customers/<id>/delete", methods=["POST"])

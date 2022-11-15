@@ -5,6 +5,8 @@ import repositories.session_repository as session_repository
 import repositories.staff_repository as staff_repository
 import repositories.room_repository as room_repository
 import repositories.session_type_repository as session_type_repository
+import repositories.bookings_repository as bookings_repository
+import repositories.customer_repository as customers_repository
 
 sessions_blueprint = Blueprint("sessions", __name__)
 
@@ -78,7 +80,9 @@ def show_(id):
     rooms = room_repository.select_all()
     session_types = session_type_repository.select_all()
     attendees = session_repository.select_customers_attending_session(id)
-    return render_template('sessions/session_information.html', session = session, staff = staff, rooms=rooms, session_types = session_types, attendees = attendees)
+    bookings = bookings_repository.select_all()
+    customers = customers_repository.select_all()
+    return render_template('sessions/session_information.html', customers = customers, session = session, staff = staff, rooms=rooms, session_types = session_types, attendees = attendees, bookings = bookings)
 
 # DELETE
 @sessions_blueprint.route("/sessions/<id>/delete", methods=["POST"])

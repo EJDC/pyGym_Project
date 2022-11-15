@@ -103,6 +103,7 @@
     </div>
 </section>
 
+<h2> Customers Attending Session</h2>
 <section>
     {% for attendee in attendees %}
         <ul>
@@ -115,8 +116,38 @@
             <li>
                 {{ attendee.membership_level}}
             </li>
+                {% for booking in bookings %}
+                {% if booking.customer.id == attendee.id and booking.session.id == session.id %}
+                <li><form action="/bookings/{{ booking.id }}/delete" method="POST">
+                    <input type="submit" value="Cancel Booking"></li></form>{% endif %}
+                {% endfor %}
         </ul>
     {% endfor %}
 </section>
+
+<h2>Book Customer into Session</h2>
+<form action="/bookings" method="POST">
+    <div>
+        <label for="session">Session</label>
+        <select name="session_id" id="session">
+            <option value="{{ session.id }}">
+                {{ session.name }} {{session.date_and_time}}
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="customer">Customer</label>
+        <select name="customer_id" id="customer">
+            {% for customer in customers %}
+            <option value="{{ customer.id }}">
+                {{ customer.first_name }} {{customer.last_name}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create Booking">
+    </div>
+</form>
 
 {% endblock %}

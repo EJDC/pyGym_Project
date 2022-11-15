@@ -43,6 +43,11 @@
         <li>
             <a href = "/customers/{{booking.customer.id}}"> {{ booking.customer.first_name }} {{ booking.customer.last_name}} </a>
         </li>
+        <div>
+            <form action="/bookings/{{ booking.id }}/delete" method="POST">
+                <input type="submit" value="Cancel Booking">
+            </form>
+        </div>
     </ul>
 </section>
 

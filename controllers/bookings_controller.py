@@ -40,14 +40,15 @@ def create_booking():
         if current_occupancy + 1 > session.max_capacity:
             return redirect("https://http.cat/401")
         else:
-    # check if booking is already made
             for booking in bookings:
-                if str(booking.customer.id) == customer_id and str(booking.session.id) == session_id:
+                booking_customer_id = str(booking.customer.id)
+                session_customer_id = str(booking.session.id)
+                if booking_customer_id == customer_id and session_customer_id == session_id:
                     return  redirect("https://http.cat/401")
-                else:
-                    new_booking = Booking(customer, session)
-                    bookings_repository.save(new_booking)
-                    return redirect("/bookings")
+            new_booking = Booking(customer, session)
+            bookings_repository.save(new_booking)
+            return redirect(request.referrer)
+
 
 # EDIT
 @bookings_blueprint.route("/bookings/<id>/edit")
@@ -74,4 +75,4 @@ def update_booking(id):
 @bookings_blueprint.route("/bookings/<id>/delete", methods=["POST"])
 def delete_booking(id):
     bookings_repository.delete(id)
-    return redirect("/bookings")
+    return redirect(request.referrer)
