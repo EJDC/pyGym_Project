@@ -11,7 +11,7 @@
         {% if staff_session_type.staff_member.id == staff.id %}
         <li>{{staff_session_type.session_type.name}}
             <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
-                <input type="submit" value="Delete Session Type">
+                <input type="submit" value="Delete Session Type"> </form>
         </li>
         {% endif %}
         {% endfor %}
