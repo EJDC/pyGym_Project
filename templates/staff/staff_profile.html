@@ -9,7 +9,10 @@
     <ul>
         {% for staff_session_type in staff_session_types %}
         {% if staff_session_type.staff_member.id == staff.id %}
-        <li>{{staff_session_type.session_type.name}}</li>
+        <li>{{staff_session_type.session_type.name}}
+            <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
+                <input type="submit" value="Delete Session Type">
+        </li>
         {% endif %}
         {% endfor %}
 
@@ -50,4 +53,30 @@
         </form>
     </div>
 </section>
+
+<h2>Add Session Type to Staff</h2>
+<form action="/staff_session_types" method="POST">
+    <div>
+        <label for="staff_id">Staff Member</label>
+        <select name="staff_id" id="staff_id">
+            <option value="{{staff.id }}">
+                {{ staff.first_name }} {{staff.last_name}}
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="session_type_id">Session Type</label>
+        <select name="session_type_id" id="session_type_id">
+            {% for session_type in session_types %}
+            <option value="{{ session_type.id }}">
+                {{ session_type.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <input type="submit" value = "Add Type">
+    </div>
+</form>
+
 {% endblock %}

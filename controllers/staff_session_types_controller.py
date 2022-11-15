@@ -24,12 +24,18 @@ def new_staff_session_type():
 @staff_session_types_blueprint.route("/staff_session_types", methods=["POST"])
 def create_staff_session_type():
     staff_id = request.form["staff_id"]
-    session_id = request.form["session_type_id"]
+    session_type_id = request.form["session_type_id"]
     staff = staff_repository.select(staff_id)
-    session_type = session_type_repository.select(session_id)
+    session_type = session_type_repository.select(session_type_id)
+    staff_session_types = staff_session_types_repository.select_all()
+    for staff_session_type in staff_session_types:
+        staff_session_type_staff_id = str(staff_session_type.staff_member.id)
+        staff_session_type_session_type_id = str(staff_session_type.session_type.id)
+        if staff_session_type_staff_id == staff_id and staff_session_type_session_type_id == session_type_id:
+            return  redirect("https://http.cat/401")
     new_staff_session_type = StaffSessionType(staff, session_type)
     staff_session_types_repository.save(new_staff_session_type)
-    return redirect("/staff_session_types")
+    return redirect(request.referrer)
 
 
 # EDIT
@@ -57,4 +63,4 @@ def update_staff_session_type(id):
 @staff_session_types_blueprint.route("/staff_session_types/<id>/delete", methods=["POST"])
 def delete_staff_session_type(id):
     staff_session_types_repository.delete(id)
-    return redirect("/staff_session_types")
+    return redirect(request.referrer)

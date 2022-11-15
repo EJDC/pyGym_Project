@@ -54,4 +54,17 @@
     </div>
 </form>
 
+<h2> Add New Room </h2>
+<section>
+    <form action="/rooms" method="post">
+        <div>
+            <label for="name"> Name</label>
+            <input type="text" id="name" name="name"  required autofocus>
+        </div>
+        <div>
+            <button type="submit">Create Room</button>
+        </div>
+    </form>
+</section>
+
 {% endblock %}

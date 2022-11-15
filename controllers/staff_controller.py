@@ -6,6 +6,8 @@ import repositories.staff_repository as staff_repository
 from models.staff_session_type import StaffSessionType
 import repositories.staff_session_types_repository as staff_session_types_repository
 
+from models.session_type import SessionType
+import repositories.session_type_repository as session_type_repository
 staff_blueprint = Blueprint("staff", __name__)
 
 # INDEX
@@ -13,13 +15,15 @@ staff_blueprint = Blueprint("staff", __name__)
 def staff():
     staff = staff_repository.select_all()
     staff_session_types = staff_session_types_repository.select_all()
-    return render_template("staff/index.html", staff=staff, staff_session_types = staff_session_types)
+    session_types = session_type_repository.select_all()
+    return render_template("staff/index.html", session_types=session_types ,staff=staff, staff_session_types = staff_session_types)
 
 @staff_blueprint.route("/staff/<id>")
 def show_(id):
     staff = staff_repository.select(id)
     staff_session_types = staff_session_types_repository.select_all()
-    return render_template('staff/staff_profile.html',  staff = staff, staff_session_types = staff_session_types)
+    session_types = session_type_repository.select_all()
+    return render_template('staff/staff_profile.html',  staff = staff, staff_session_types = staff_session_types, session_types = session_types)
 
 # NEW
 @staff_blueprint.route("/staff/new")
