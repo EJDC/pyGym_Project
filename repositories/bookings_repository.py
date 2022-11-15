@@ -4,7 +4,6 @@ from models.booking import Booking
 from models.customer import Customer
 import repositories.customer_repository as customer_repository
 
-from models.session import Session
 import repositories.session_repository as session_repository
 
 def save(booking):

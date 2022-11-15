@@ -3,10 +3,8 @@ from flask import Blueprint, Flask, redirect, render_template, request
 from models.customer import Customer
 import repositories.customer_repository as customer_repository
 
-from models.booking import Booking
 import repositories.bookings_repository as bookings_respository
 
-from models.session import Session
 import repositories.session_repository as session_respository
 
 customers_blueprint = Blueprint("customers", __name__)

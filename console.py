@@ -89,13 +89,13 @@ session_type_repository.save(session_type4)
 
 # SESSIONS
 
-session1 = Session("Vinyasa Yoga", '2022-11-22 08:00:00', 45, 16, 99, 5.50, 9.99, 30, staff1, 49.99, room1, session_type1)
+session1 = Session("Vinyasa Yoga", '2022-11-22 08:00:00', 45, 16, 99, 5.50, 9.99, 30, 49.99, session_type1, staff1, room1)
 session_repository.save(session1)
 
-session2 = Session("Group Cycle", '2022-11-22 08:30:00', 60, 16, 99, 0.00, 5.99, 35, staff2, 54.99, room3, session_type2)
+session2 = Session("Group Cycle", '2022-11-22 08:30:00', 60, 16, 99, 0.00, 5.99, 35, 54.99,  session_type2,  staff2, room3)
 session_repository.save(session2)
 
-session3 = Session("Core Conditioning", '2022-11-22 09:30:00', 30, 16, 99, 0.00, 4.99, 25, staff2, 39.99, room3, session_type2)
+session3 = Session("Core Conditioning", '2022-11-22 09:30:00', 30, 16, 99, 0.00, 4.99, 25, 39.99, session_type2, staff2,  room3)
 session_repository.save(session3)
 
 # ROOM SESSION TYPES

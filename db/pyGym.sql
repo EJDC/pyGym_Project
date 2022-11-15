@@ -52,10 +52,10 @@ CREATE TABLE sessions (
     p_member_price FLOAT,
     s_member_price FLOAT,
     max_capacity INT,
-    instructor_id INT NOT NULL REFERENCES staff(id),
     instructor_payment FLOAT,
-    room INT NOT NULL REFERENCES rooms(id),
-    session_type INT NOT NULL REFERENCES session_types(id)
+    session_type INT NOT NULL REFERENCES session_types(id),
+    instructor_id INT REFERENCES staff(id),
+    room INT REFERENCES rooms(id)
 );
 
 

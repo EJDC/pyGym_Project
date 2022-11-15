@@ -59,6 +59,6 @@ def select_customers_bookings(id):
         room = room_repository.select(result["room"])
         instructor = staff_repository.select(result["instructor_id"])
         session_type = session_type_repository.select(result["session_type"])
-        booking = Session(result["name"], result["date_and_time"], result["duration"], result["min_age"], result["max_age"], result["p_member_price"], result["s_member_price"], result["max_capacity"], instructor, result["instructor_payment"], room, session_type, result["id"])
+        booking = Session(result["name"], result["date_and_time"], result["duration"], result["min_age"], result["max_age"], result["p_member_price"], result["s_member_price"], result["max_capacity"], result["instructor_payment"],  session_type, instructor, room, result["id"])
         customer_bookings.append(booking)
     return customer_bookings

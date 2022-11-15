@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+Hello World!
+
+{{session.name}}
+{{session.session_type.name}}
+
+<h2> Session Information </h2>
+
+<section>
+    <form action="/sessions/{{session.id}}/instructor_room" method="post">
+        <div>
+            <label for="instructor">Instructor</label>
+            <select id="instructor" name="instructor_id">
+                {% for instructor in instructors %}
+                <option value="{{ instructor.id }}">
+                    {{ instructor.first_name }} {{ instructor.last_name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="room">Room</label>
+            <select id="room" name="room_id">
+                {% for room in rooms %}
+                <option value="{{ room.id }}">
+                    {{ room.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <button type="submit">Update Session</button>
+        </div>
+    </form>
+</section>
+
+
+{% endblock %}

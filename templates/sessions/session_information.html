@@ -50,7 +50,6 @@
             <input type="number" min="0" max="99" step="1" id="max_capacity" name="max_capacity"
                 value="{{session.max_capacity}}" required autofocus>
         </div>
-
         <div>
             <label for="instructor">Instructor</label>
             <select id="instructor" name="instructor_id">
@@ -62,13 +61,11 @@
                 {% endfor %}
             </select>
         </div>
-
         <div>
             <label for="instructor_payment">Instructor Payment</label>
             <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment"
                 value="{{session.instructor_payment}}" required autofocus>
         </div>
-
         <div>
             <label for="room">Room</label>
             <select id="room" name="room_id">

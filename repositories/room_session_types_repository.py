@@ -55,3 +55,13 @@ def update(room_session_type):
     sql = "UPDATE room_session_types SET (room_id, session_type_id) = (%s, %s) WHERE id = %s"
     values = [room_session_type.room.id, room_session_type.session_type.id, room_session_type.id]
     run_sql(sql, values)
+
+def select_session_room(session_type_id):
+    rooms = []
+    sql = "SELECT rooms.* FROM rooms INNER JOIN room_session_types ON room_session_types.room_id = rooms.id WHERE room_session_types.session_type_id =  %s"
+    values = [session_type_id]
+    results = run_sql(sql, values)
+    for result in results:
+        room = Room(result["name"], result["id"])
+        rooms.append(room)
+    return rooms

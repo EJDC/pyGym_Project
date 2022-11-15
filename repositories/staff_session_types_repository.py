@@ -55,3 +55,13 @@ def update(staff_session_type):
     sql = "UPDATE staff_session_types SET (staff_id, session_type_id) = (%s, %s) WHERE id = %s"
     values = [staff_session_type.staff_member.id, staff_session_type.session_type.id, staff_session_type.id]
     run_sql(sql, values)
+
+def select_session_instructor(session_type_id):
+    instructors = []
+    sql = "SELECT staff.* FROM staff INNER JOIN staff_session_types ON staff_session_types.staff_id = staff.id WHERE staff_session_types.session_type_id =  %s"
+    values = [session_type_id]
+    results = run_sql(sql, values)
+    for result in results:
+        instructor = Staff(result["first_name"], result["last_name"], result["email"], result["monthly_invoice"], result["id"])
+        instructors.append(instructor)
+    return instructors

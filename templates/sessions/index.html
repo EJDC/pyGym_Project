@@ -16,12 +16,8 @@
         <li>
             {{session.duration}}
         </li>
-        <li>
-            {{session.instructor.first_name}}
-        </li>
-        <li>
-            {{session.room.name}}
-        </li>
+            {% if session.instructor['id'] %}<li>{{session.instructor.first_name}}</li> {% endif %}
+            {% if session.room['id'] %}<li>{{session.room.name}}</li> {% endif %}
     </ul>
 </section>
 
