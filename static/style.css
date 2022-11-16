@@ -264,6 +264,46 @@ body {
 }
 
 
+/* Staff Page Flex */
+
+.flex-container {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 800px;
+  margin:  auto;
+
+  }
+
+.flex-item {
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  /* padding: 1rem; */
+  margin: 1rem;
+  background-color: #dcf0cb;
+  border-color: #3E8344;
+  border: dashed 1px;
+}
+
+.staff-name{
+  text-decoration: none;
+  color: #3E8344;
+  font-weight: bold;
+}
+
+.staff-name:hover{
+  color: goldenrod;
+}
+
 @media all and (max-width: 430px) {
 
   .flex-row {

@@ -1,55 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="page_title">Bookings</div>
+</header>
 
-<h2>Create New Booking</h2>
-<form action="/bookings" method="POST">
-    <div>
-        <label for="customer">Customer</label>
-        <select name="customer_id" id="customer">
-            {% for customer in customers %}
-            <option value="{{ customer.id }}">
-                {{ customer.first_name }} {{customer.last_name}}
-            </option>
-            {% endfor %}
-        </select>
-    </div>
-    <div>
-        <label for="session">Session</label>
-        <select name="session_id" id="session">
-            {% for session in sessions %}
-            <option value="{{ session.id }}">
-                {{ session.name }} {{session.date_and_time}}
-            </option>
-            {% endfor %}
-        </select>
-    </div>
-    <div>
-        <input type="submit">
-    </div>
-</form>
-
-<h2>All Bookings</h2>
-
-{% for booking in bookings %}
-
-<section>
-    <ul>
-        <li>
-            <a href="/sessions/{{booking.session.id}}"> {{booking.session.name }}</a> 
-        </li>
-        <li>
-            {{ booking.session.date_and_time }}
-        </li>
-        <li>
-            <a href = "/customers/{{booking.customer.id}}"> {{ booking.customer.first_name }} {{ booking.customer.last_name}} </a>
-        </li>
-        <div>
-            <form action="/bookings/{{ booking.id }}/delete" method="POST">
-                <input type="submit" value="Cancel Booking">
+<body>
+    <div class="container">
+        <div class="top_page_section">Create New Booking</div>
+        <section>
+            <form class="new_item" action="/bookings" method="POST">
+                <ul class="form-wrapper">
+                    <li class="form-row">
+                        <!-- <label for="customer">Customer</label> -->
+                        <select name="customer_id" id="customer">
+                            {% for customer in customers %}
+                            <option value="{{ customer.id }}">
+                                {{ customer.first_name }} {{customer.last_name}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="form-row">
+                        <!-- <label for="session">Session</label> -->
+                        <select name="session_id" id="session">
+                            {% for session in sessions %}
+                            <option value="{{ session.id }}">
+                                {{ session.name }} {{session.date_and_time}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="form-row">
+                        <input type="submit">
+                    </li>
+                </ul>
             </form>
+        </section>
+        <div class="page_section">All Bookings</div>
+        <div class="table-container">
+            <div class="flex-table header">
+                <div class="flex-row">Session</div>
+                <div class="flex-row">Date</div>
+                <div class="flex-row">Time</div>
+                <div class="flex-row">Customer</div>
+                <div class="flex-row">Cancel</div>
+            </div>
+            {% for booking in bookings %}
+            <div class="flex-table row">
+                <div class="flex-row"><a class="name" href="/sessions/{{booking.session.id}}"> {{booking.session.name
+                        }}</a> </div>
+                <div class="flex-row">{{booking.session.date_in_words()}}</div>
+                <div class="flex-row">{{booking.session.time_in_words()}}</div>
+                <div class="flex-row"><a class="name2" href="/customers/{{booking.customer.id}}"> {{
+                        booking.customer.first_name }} {{
+                        booking.customer.last_name}} </a></div>
+                <div class="flex-row">
+                    <form action="/bookings/{{ booking.id }}/delete" method="POST">
+                        <input type="submit" value="Cancel">
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    </ul>
-</section>
-
-{% endfor %}
+    </div>
+</body>
 {% endblock %}

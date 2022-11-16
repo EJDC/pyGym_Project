@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="page_title">All Staff</div>
+<div class="page_title">Staff</div>
 </header>
-
 <body>
     <div class="container">
         <div class="button_container">
@@ -11,50 +10,56 @@
             </form>
         </div>
 
-{% for staff_member in staff %}
+        <div class="top_page_section">All Staff</div>
 
-<h3><a href="/staff/{{staff_member.id}}"> {{staff_member.first_name }} {{ staff_member.last_name }} </a></h3>
-
-<section>
-    <ul>
-            {% for staff_session_type in staff_session_types %}
-                {% if staff_session_type.staff_member.id == staff_member.id %}
-            <li>{{staff_session_type.session_type.name}}
-                <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
-                    <input type="submit" value="Delete Session Type">
-                </form>
-            </li>
-                    {% endif %}
-            {% endfor %}
-    </ul>
-</section>
-
-{% endfor %}
-
-<h2>Add Session Type to Staff</h2>
-<form action="/staff_session_types" method="POST">
-    <div>
-        <label for="staff_id">Staff Member</label>
-        <select name="staff_id" id="staff_id">
+        <section class="flex-container">
             {% for staff_member in staff %}
-            <option value="{{ staff_member.id }}">
-                {{ staff_member.first_name }} {{staff_member.last_name}}
-            </option>
+            <div class="flex-item">
+                <h3><a class="staff-name" href="/staff/{{staff_member.id}}"> {{staff_member.first_name }} {{
+                        staff_member.last_name }} </a></h3>
+                {% for staff_session_type in staff_session_types %}
+                {% if staff_session_type.staff_member.id == staff_member.id %}
+                <p>{{staff_session_type.session_type.name}}
+                <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+                </p>
+                {% endif %}
+                {% endfor %}
+            </div>
             {% endfor %}
-        </select>
+        </section>
+
+        <div class="page_section">Add Session Category to Staff</div>
+        <section>
+            <form class="new_item" action="/staff_session_types" method="POST">
+                <ul class="form-wrapper">
+                    <li class="form-row">
+                        <label for="staff_id">Staff Member</label>
+                        <select name="staff_id" id="staff_id">
+                            {% for staff_member in staff %}
+                            <option value="{{ staff_member.id }}">
+                                {{ staff_member.first_name }} {{staff_member.last_name}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="form-row">
+                        <label for="session_type_id">Session Type</label>
+                        <select name="session_type_id" id="session_type_id">
+                            {% for session_type in session_types %}
+                            <option value="{{ session_type.id }}">
+                                {{ session_type.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="form-row">
+                        <input type="submit" value="Add Type">
+                    </li>
+                </ul>
+            </form>
+        </section>
     </div>
-    <div>
-        <label for="session_type_id">Session Type</label>
-        <select name="session_type_id" id="session_type_id">
-            {% for session_type in session_types %}
-            <option value="{{ session_type.id }}">
-                {{ session_type.name }}
-            </option>
-            {% endfor %}
-        </select>
-    </div>
-    <div>
-        <input type="submit" value = "Add Type">
-    </div>
-</form>
+</body>
 {% endblock %}

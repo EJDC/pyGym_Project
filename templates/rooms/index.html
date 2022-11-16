@@ -1,35 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="page_title">Rooms</div>
+</header>
+<body>
+    <div class="page_section">All Rooms</div>
 
-<h2>All Rooms</h2>
-
-{% for room in rooms %}
-
-<h3> {{room.name}} </h3>
-
-<section>
-    <ul>
-        {% for room_session_type in room_session_types %}
-        {% if room_session_type.room.id == room.id %}
-        <li>{{room_session_type.session_type.name}}
+    <section class="flex-container">
+        {% for room in rooms %}
+        <div class="flex-item">
+            <h3>{{room.name}}</h3>
+            {% for room_session_type in room_session_types %}
+            {% if room_session_type.room.id == room.id %}
+            <p>{{room_session_type.session_type.name}}
             <form action="/room_session_types/{{ room_session_type.id }}/delete" method="POST">
-                <input type="submit" value="Delete Session Type">
+                <input type="submit" value="Delete">
             </form>
-        </li>
-        {% endif %}
+            </p>
+            {% endif %}
+            {% endfor %}
+            <p><form action="/rooms/{{ room.id }}/delete" method="POST">
+                <input type="submit" value="Delete Room"></p>
+            </form>            
+        </div>
         {% endfor %}
-    </ul>
-</section>
-
-<form action="/rooms/{{ room.id }}/delete" method="POST">
-    <input type="submit" value="Delete Room">
-</form>
-
-{% endfor %}
-
-<h2>Add Session Type to Room</h2>
-<form action="/room_session_types" method="POST">
-    <div>
+    </section>
+    
+<div class="page_section">Add Session Category to Room</div>
+<form class="new_item" action="/room_session_types" method="POST">
+    <ul class = "form-wrapper">
+    <li class = "form-row">
         <label for="room">Room</label>
         <select name="room_id" id="room_id">
             {% for room in rooms %}
@@ -38,8 +37,8 @@
             </option>
             {% endfor %}
         </select>
-    </div>
-    <div>
+    </li>
+    <li class = "form-row">
         <label for="session_type_id">Session Type</label>
         <select name="session_type_id" id="session_type_id">
             {% for session_type in session_types %}
@@ -48,22 +47,24 @@
             </option>
             {% endfor %}
         </select>
-    </div>
-    <div>
+    </li>
+    <li class = "form-row">
         <input type="submit" value = "Add Type">
-    </div>
+    </li>
+    </ul>
 </form>
 
-<h2> Add New Room </h2>
+<div class="page_section">Add New Room</div>
 <section>
-    <form action="/rooms" method="post">
-        <div>
+    <form class = "form-row" action="/rooms" method="post">
+       <ul class = "form-wrapper">
+        <li class = "form-row">
             <label for="name"> Name</label>
             <input type="text" id="name" name="name"  required>
-        </div>
-        <div>
+        </li>
+        <li class = "form-row">
             <button type="submit">Create Room</button>
-        </div>
+        </li>
     </form>
 </section>
 

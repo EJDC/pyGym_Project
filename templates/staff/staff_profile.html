@@ -1,82 +1,89 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="page_title">Staff Profile</div>
+</header>
 
-<h2> Staff Profile </h2>
+<body>
+    <div class="container">
+        <div class="top_page_section">Update Staff Member Details</div>
+        <section>
+            <form class="new-item" action="/staff/{{staff.id}}" method="post">
+                <ul class="form-wrapper">
+                    <li class="form-row">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" value="{{staff.first_name}}" required>
+                    </li>
 
-<h3><a href="/staff/{{staff.id}}"> {{ staff.first_name }} {{ staff.last_name }} </a></h3>
+                    <li class="form-row">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" value="{{staff.last_name}}" required>
+                    </li>
 
-<section>
-    <ul>
-        {% for staff_session_type in staff_session_types %}
-        {% if staff_session_type.staff_member.id == staff.id %}
-        <li>{{staff_session_type.session_type.name}}
-            <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
-                <input type="submit" value="Delete Session Type"> </form>
-        </li>
-        {% endif %}
-        {% endfor %}
+                    <li class="form-row">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" value="{{staff.email}}" required>
+                    </li>
 
-    </ul>
-</section>
+                    <li class="form-row">
+                        <label for="monthly_invoice">Monthly Invoice</label>
+                        <input type="number" min="0" step="any" id="monthly_invoice" value={{staff.monthly_invoice}}
+                            name="monthly_invoice" required>
+                    </li>
 
-
-<section>
-    <form action="/staff/{{staff.id}}" method="post">
-        <div>
-            <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" value="{{staff.first_name}}" required>
-        </div>
-
-        <div>
-            <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" value="{{staff.last_name}}" required>
-        </div>
-
-        <div>
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" value="{{staff.email}}" required>
-        </div>
-
-        <div>
-            <label for="monthly_invoice">Monthly Invoice</label>
-            <input type="number" min="0" step="any" id="monthly_invoice" value={{staff.monthly_invoice}}
-                name="monthly_invoice" required>
-        </div>
-
-        <div>
-            <button type="submit">Update Staff Member</button>
-        </div>
-    </form>
-    <div>
-        <form action="/staff/{{ staff.id }}/delete" method="POST">
-            <input type="submit" value="Delete Staff Member">
-        </form>
-    </div>
-</section>
-
-<h2>Add Session Type to Staff</h2>
-<form action="/staff_session_types" method="POST">
-    <div>
-        <label for="staff_id">Staff Member</label>
-        <select name="staff_id" id="staff_id">
-            <option value="{{staff.id }}">
-                {{ staff.first_name }} {{staff.last_name}}
-            </option>
-        </select>
-    </div>
-    <div>
-        <label for="session_type_id">Session Type</label>
-        <select name="session_type_id" id="session_type_id">
-            {% for session_type in session_types %}
-            <option value="{{ session_type.id }}">
-                {{ session_type.name }}
-            </option>
+                    <li class="form-row">
+                        <button type="submit">Update Staff Member</button>
+                    </li>
+            </form>
+            </ul>
+        </section>
+        <div class="page_section">Staff Member Session Types</div>
+        <section class="flex-container">
+            {% for staff_session_type in staff_session_types %}
+            {% if staff_session_type.staff_member.id == staff.id %}
+            <div class="flex-item">
+                <p>{{staff_session_type.session_type.name}}
+                <form action="/staff_session_types/{{ staff_session_type.id }}/delete" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+                </p>
+            </div>
+            {% endif %}
             {% endfor %}
-        </select>
-    </div>
-    <div>
-        <input type="submit" value = "Add Type">
-    </div>
-</form>
 
+            </ul>
+        </section>
+        <div class="page_section">Add Session Type to Staff Member</div>
+        <form class="new_item" action="/staff_session_types" method="POST">
+            <ul class="form-wrapper">
+                <li class="form-row">
+                    <!-- <label for="staff_id">Staff Member</label> -->
+                    <select name="staff_id" id="staff_id">
+                        <option value="{{staff.id }}">
+                            {{ staff.first_name }} {{staff.last_name}}
+                        </option>
+                    </select>
+                </li>
+                <li class="form-row">
+                    <!-- <label for="session_type_id">Session Type</label> -->
+                    <select name="session_type_id" id="session_type_id">
+                        {% for session_type in session_types %}
+                        <option value="{{ session_type.id }}">
+                            {{ session_type.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </li>
+                <li class="form-row">
+                    <input type="submit" value="Add Session Type">
+                </li>
+            </ul>
+        </form>
+        <div class="page_section">Delete Staff Member</div>
+        <div class="button_container">
+            <form action="/staff/{{ staff.id }}/delete" method="POST">
+                <input class="delete" type="submit" value="Delete Staff Member">
+            </form>
+        </div>
+    </div>
+</body>
 {% endblock %}
