@@ -2,7 +2,6 @@
 {% block content %}
 <div class="page_title">Customer Profile</div>
 </header>
-
 <body>
     <div class="container">
         <div class="top_page_section">Update Customer Details</div>
@@ -98,16 +97,16 @@
                     <li class="form-row">
                         <input type="checkbox" id="extra_physio" name="extra_physio" value="{{customer.extra_physio}}"
                             {% if customer.extra_physio==True %} checked="checked" {% endif %}>
-                        <label for="extra_physio">Extra Physio</label><br>
+                        <label for="extra_physio">Extra Physio</label>
                         <input type="checkbox" id="extra_pt" name="extra_pt" value="True" {% if customer.extra_pt==True
                             %} checked="checked" {% endif %}>
-                        <label for="extra_pt">Extra PT</label><br>
+                        <label for="extra_pt">Extra PT</label>
                         <input type="checkbox" id="extra_service_3" name="extra_service_3" value="True" {% if
                             customer.extra_service_3==True %} checked="checked" {% endif %}>
-                        <label for="extra_service_3">Extra Service3</label><br>
+                        <label for="extra_service_3">Extra Service3</label>
                         <input type="checkbox" id="extra_service_4" name="extra_service_4" value="True" {% if
                             customer.extra_service_4==True %} checked="checked" {% endif %}>
-                        <label for="extra_service_4">Extra Service4</label><br>
+                        <label for="extra_service_4">Extra Service4</label>
                     </li>
 
                     <li class="form-row">
@@ -141,14 +140,11 @@
             </div>
             {% endfor %}
         </div>
-
-
         <div class="page_section">New Booking</div>
-
         <form class="new_item" action="/bookings" method="POST">
             <ul class="form-wrapper">
                 <li class="form-row">
-                    <label for="customer">Customer</label>
+                    <!-- <label for="customer">Customer</label> -->
                     <select name="customer_id" id="customer">
                         <option value="{{ customer.id }}">
                             {{ customer.first_name }} {{customer.last_name}}
@@ -156,7 +152,7 @@
                     </select>
                 </li>
                 <li class="form-row">
-                    <label for="session">Session</label>
+                    <!-- <label for="session">Session</label> -->
                     <select name="session_id" id="session">
                         {% for session in sessions %}
                         <option value="{{ session.id }}">
@@ -170,17 +166,12 @@
                 </li>
             </ul>
         </form>
-
-
         <div class="page_section">Delete Customer</div>
-
-
         <div class="button_container">
             <form action="/customers/{{ customer.id }}/delete" method="POST">
                 <input class="delete" type="submit" value="Delete Customer">
             </form>
         </div>
-
     </div>
 </body>
 {% endblock %}

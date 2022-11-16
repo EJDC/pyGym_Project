@@ -1,148 +1,154 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h2> Session Information </h2>
-
-<section>
-    <form action="/sessions/{{session.id}}" method="post">
-        <div>
-            <label for="name">Session Name</label>
-            <input type="text" id="name" name="name" value="{{session.name}}" required>
-        </div>
-
-        <div>
-            <label for="date_and_time">Date and Time</label>
-            <input type="datetime-local" id="date_and_time" name="date_and_time" value="{{session.date_and_time}}"
-                required>
-        </div>
-
-        <div>
-            <label for="duration">Duration</label>
-            <input type="number" min="0" max="180" step="5" id="duration" name="duration" value="{{session.duration}}"
-                required>
-        </div>
-
-        <div>
-            <label for="min_age">Minimum Age</label>
-            <input type="number" min="0" max="99" step="1" id="min_age" name="min_age" value="{{session.min_age}}"
-                required>
-        </div>
-
-        <div>
-            <label for="max_age">Maximum Age</label>
-            <input type="number" min="0" max="99" step="1" id="max_age" name="max_age" value="{{session.max_age}}"
-                required>
-        </div>
-        <div>
-            <label for="p_member_price">Premium Member Price</label>
-            <input type="number" min="0" step="any" id="p_member_price" name="p_member_price"
-                value="{{session.p_member_price}}" required>
-        </div>
-
-        <div>
-            <label for="s_member_price">Standard Member Price</label>
-            <input type="number" min="0" step="any" id="s_member_price" name="s_member_price"
-                value="{{session.s_member_price}}" required>
-        </div>
-
-        <div>
-            <label for="max_capacity">Maximum Capacity</label>
-            <input type="number" min="0" max="99" step="1" id="max_capacity" name="max_capacity"
-                value="{{session.max_capacity}}" required>
-        </div>
-
-        <div>
-            <label for="instructor_payment">Instructor Payment</label>
-            <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment"
-                value="{{session.instructor_payment}}" required>
-        </div>
-
-        <div>
-                {% for session_type in session_types %}
-                    {% if session.session_type.id==session_type.id %}
-                    Session Type: {{ session_type.name}}
-                    {% endif %}
-                {% endfor %}
-        </div>
-        <div>
-            <label for="instructor">Instructor</label>
-            <select id="instructor" name="instructor_id">
-                {% for instructor in staff %}
-                <option value="{{ instructor.id }}" {% if session.instructor.id==instructor.id %} selected="selected" {%
-                    endif %}>
-                    {{ instructor.first_name }} {{ instructor.last_name }}
-                </option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div>
-            <label for="room">Room</label>
-            <select id="room" name="room_id">
-                {% for room in rooms %}
-                <option value="{{ room.id }}" {% if session.room.id==room.id %} selected="selected" {% endif %}>
-                    {{ room.name }}
-                </option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div>
-            <button type="submit">Update Session</button>
-        </div>
-    </form>
-    <div>
-        <form action="/sessions/{{ session.id }}/delete" method="POST">
-            <input type="submit" value="Delete Session">
-        </form>
-    </div>
-</section>
-
-<h2> Customers Attending Session</h2>
-<section>
-    {% for attendee in attendees %}
-        <ul>
-            <li>
-                <a href="/customers/{{attendee.id}}"> {{ attendee.first_name }} {{attendee.last_name}} </a>
-            </li>
-            <li>
-                {{ attendee.dob }} </a>
-            </li>
-            <li>
-                {{ attendee.membership_level}}
-            </li>
-                {% for booking in bookings %}
-                {% if booking.customer.id == attendee.id and booking.session.id == session.id %}
-                <li><form action="/bookings/{{ booking.id }}/delete" method="POST">
-                    <input type="submit" value="Cancel Booking"></li></form>{% endif %}
-                {% endfor %}
-        </ul>
-    {% endfor %}
-</section>
-
-<h2>Book Customer into Session</h2>
-<form action="/bookings" method="POST">
-    <div>
-        <label for="session">Session</label>
-        <select name="session_id" id="session">
-            <option value="{{ session.id }}">
-                {{ session.name }} {{session.date_and_time}}
-            </option>
-        </select>
-    </div>
-    <div>
-        <label for="customer">Customer</label>
-        <select name="customer_id" id="customer">
-            {% for customer in customers %}
-            <option value="{{ customer.id }}">
-                {{ customer.first_name }} {{customer.last_name}}
-            </option>
+<div class="page_title">Session Information</div>
+</header>
+<body>
+    <div class="container">
+        <div class="top_page_section">Update Session Details</div>
+        <section>
+            <form class="new-item" action="/sessions/{{session.id}}" method="post">
+                <ul class="form-wrapper">
+                    <li class="form-row">
+                        <label for="name">Session Name</label>
+                        <input type="text" id="name" name="name" value="{{session.name}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="date_and_time">Date and Time</label>
+                        <input type="datetime-local" id="date_and_time" name="date_and_time"
+                            value="{{session.date_and_time}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="duration">Duration</label>
+                        <input type="number" min="0" max="180" step="5" id="duration" name="duration"
+                            value="{{session.duration}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="min_age">Minimum Age</label>
+                        <input type="number" min="0" max="99" step="1" id="min_age" name="min_age"
+                            value="{{session.min_age}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="max_age">Maximum Age</label>
+                        <input type="number" min="0" max="99" step="1" id="max_age" name="max_age"
+                            value="{{session.max_age}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="p_member_price">Premium Member Price</label>
+                        <input type="number" min="0" step="any" id="p_member_price" name="p_member_price"
+                            value="{{session.p_member_price}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="s_member_price">Standard Member Price</label>
+                        <input type="number" min="0" step="any" id="s_member_price" name="s_member_price"
+                            value="{{session.s_member_price}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="max_capacity">Maximum Capacity</label>
+                        <input type="number" min="0" max="99" step="1" id="max_capacity" name="max_capacity"
+                            value="{{session.max_capacity}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for="instructor_payment">Instructor Payment</label>
+                        <input type="number" min="0" step="any" id="instructor_payment" name="instructor_payment"
+                            value="{{session.instructor_payment}}" required>
+                    </li>
+                    <li class="form-row">
+                        <label for = "Session_Type"> Session Type</label>
+                        <div id="Session_Type">
+                        {% for session_type in session_types %}
+                        {% if session.session_type.id==session_type.id %}
+                        {{ session_type.name}}
+                        {% endif %}
+                        {% endfor %}
+                        </div>
+                    </li>
+                    <li class="form-row">
+                        <label for="instructor">Instructor</label>
+                        <select id="instructor" name="instructor_id">
+                            {% for instructor in staff %}
+                            <option value="{{ instructor.id }}" {% if session.instructor.id==instructor.id %}
+                                selected="selected" {% endif %}>
+                                {{ instructor.first_name }} {{ instructor.last_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="form-row">
+                        <label for="room">Room</label>
+                        <select id="room" name="room_id">
+                            {% for room in rooms %}
+                            <option value="{{ room.id }}" {% if session.room.id==room.id %} selected="selected" {% endif
+                                %}>
+                                {{ room.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="form-row">
+                        <button type="submit">Update Session</button>
+                    </li>
+                </ul>
+            </form>
+        </section>
+        <div class="page_section">Customers Attending</div>
+        <div class="table-container">
+            <div class="flex-table header">
+                <div class="flex-row">Name</div>
+                <div class="flex-row">Date of Birth</div>
+                <div class="flex-row">Missed Classes</div>
+                <div class="flex-row">Membership Level</div>
+                <div class="flex-row">Cancel</div>
+            </div>
+            {% for attendee in attendees %}
+            <div class="flex-table row">
+                <div class="flex-row"><a class="name" href="/customers/{{attendee.id}}"> {{ attendee.first_name }} {{attendee.last_name}} </a> </div>
+                <div class="flex-row">{{ attendee.dob }} </div>
+                <div class="flex-row">{{ attendee.missed_classes }} </div>
+                <div class="flex-row">{{ attendee.membership_level}} </div>
+                <div class="flex-row">{% for booking in bookings %}{% if booking.customer.id == attendee.id and booking.session.id == session.id %}
+                        <form action="/bookings/{{ booking.id }}/delete" method="POST">
+                            <input type="submit" value="Cancel Booking">
+                    </form>{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
             {% endfor %}
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Create Booking">
-    </div>
-</form>
+        </div>
 
-{% endblock %}
+    
+
+        <div class="page_section">Book Customer into Session</div>
+        <form class="new_item" action="/bookings" method="POST">
+            <ul class="form-wrapper">
+                <li class="form-row">
+                <!-- <label for="session">Session</label> -->
+                <select name="session_id" id="session">
+                    <option value="{{ session.id }}">
+                        {{ session.name }} {{session.date_and_time}}
+                    </option>
+                </select>
+            </li>
+            <li class = "form-row">
+                <!-- <label for="customer">Customer</label> -->
+                <select name="customer_id" id="customer">
+                    {% for customer in customers %}
+                    <option value="{{ customer.id }}">
+                        {{ customer.first_name }} {{customer.last_name}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li class = "form-row">
+                <input type="submit" value="Create Booking">
+            </li>
+            </ul>
+        </form>
+
+        <div class="page_section">Delete Session</div>
+        <div class="button_container">
+            <form action="/sessions/{{ session.id }}/delete" method="POST">
+                <input class="delete" type="submit" value="Delete Session">
+            </form>
+        </div>
+
+        {% endblock %}
