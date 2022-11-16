@@ -1,16 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-
-Hello World!
-
-{{session.name}}
-{{session.session_type.name}}
-
-<h2> Session Information </h2>
-
+<div class="page_title">Add Instructor and Room to New Session</div>
+</header>
+<body>
+<br>
 <section>
-    <form action="/sessions/{{session.id}}/instructor_room" method="post">
-        <div>
+    <form class = "new-item" action="/sessions/{{session.id}}/instructor_room" method="post">
+    <ul class = "form-wrapper">
+        <li class = "form-row">
             <label for="instructor">Instructor</label>
             <select id="instructor" name="instructor_id">
                 {% for instructor in instructors %}
@@ -19,8 +16,8 @@ Hello World!
                 </option>
                 {% endfor %}
             </select>
-        </div>
-        <div>
+        </li>
+        <li class = "form-row">
             <label for="room">Room</label>
             <select id="room" name="room_id">
                 {% for room in rooms %}
@@ -29,10 +26,11 @@ Hello World!
                 </option>
                 {% endfor %}
             </select>
-        </div>
-        <div>
+        </li>
+        <li class = "form-row">
             <button type="submit">Update Session</button>
-        </div>
+        </li>
+    </ul>
     </form>
 </section>
 
