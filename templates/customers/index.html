@@ -1,35 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h2>All Customers</h2>
-
-{% for customer in customers %}
-
-<section>
-    <ul>
-        <li>
-            <a href="/customers/{{customer.id}}"> {{ customer.first_name }} </a>
-        </li>
-        <li>
-            <a href="/customers/{{customer.id}}"> {{ customer.last_name }} </a>
-        </li>
-        <li>
-            {{customer.dob}}
-        </li>
-        <li>
-            {{customer.membership_level}}
-        </li>
-        <li>
-            {{customer.membership_status}}
-        </li>
-    </ul>
-</section>
-
-{% endfor %}
+<div class="page_title">All Customers</div>
+</header>
+<body>
+    <div class="container">
+        <div class="button_container">
+            <form action="/customers/new">
+                <input class="button_top" type="submit" value="New Customer">
+            </form>
+        </div>
+        <div class="table-container">
+            <div class="flex-table header">
+                <div class="flex-row">Name</div>
+                <div class="flex-row">Date of Birth</div>
+                <div class="flex-row">Membership Level</div>
+                <div class="flex-row">Payment Method</div>
+                <div class="flex-row"> Status</div>
+            </div>
+            {% for customer in customers %}
+            <div class="flex-table row" >
+                <div class="flex-row" role="cell"><a class="name" href="/customers/{{customer.id}}"> {{
+                        customer.first_name }} {{ customer.last_name }}
+                    </a></div>
+                <div class="flex-row">{{customer.dob}}</div>
+                <div class="flex-row">{{customer.membership_level}}</div>
+                <div class="flex-row">{{customer.payment_method}}</div>
+                <div class="flex-row">{{customer.membership_status}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
 {% endblock %}
-
-
-<!-- <a href="/customers/{{ customer.id }}/edit"></a>
-<form action="/customers/{{ customer.id }}/delete" method="POST">
-    <input type="submit" value="Delete">
-</form> -->

@@ -1,92 +1,96 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="page_title">New Customer</div>
+</header>
 
-<h2> New Customer </h2>
+<body>
+    <div class="container">
+        <section>
+            <form class="new_item" action="/customers" method="post">
+                <ul class="form-wrapper">
+                    <li class="form-row">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" required autofocus>
+                    </li>
 
-<section>
-    <form action="/customers" method="post">
-        <div>
-            <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name"  required autofocus>
-        </div>
+                    <li class="form-row">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" required>
+                    </li>
 
-        <div>
-            <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name"  required autofocus>
-        </div>
+                    <li class="form-row">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </li>
 
-        <div>
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob"  required autofocus>
-        </div>
+                    <li class="form-row">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" required>
+                    </li>
 
-        <div>
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" required autofocus>
-        </div>
+                    <li class="form-row">
+                        <label for="membership_level">Membership Level</label>
+                        <select id="membership_level" name="membership_level">
 
-        <div>
-            <label for="membership_level">Membership Level</label>
-            <select id="membership_level" name="membership_level">
+                            <option value="Standard">
+                                Standard
+                            </option>
 
-                <option value="Standard">
-                    Standard
-                </option>
+                            <option value="Premium">
+                                Premium
+                            </option>
+                        </select>
+                    </li>
 
-                <option value="Premium">
-                    Premium
-                </option>
-            </select>
-        </div>
+                    <li class="form-row">
+                        <label for="membership_status">Membership Status</label>
+                        <select id="membership_status" name="membership_status">
 
-        <div>
-            <label for="membership_status">Membership Status</label>
-            <select id="membership_status" name="membership_status">
+                            <option value="Active">
+                                Active
+                            </option>
 
-                <option value="Active">
-                    Active
-                </option>
+                            <option value="Deactivated">
+                                Deactivated
+                            </option>
 
-                <option value="Deactivated">
-                    Deactivated
-                </option>
+                        </select>
+                    </li>
 
-            </select>
-        </div>
+                    <li class="form-row">
+                        <label for="payment_method">Payment Method</label>
+                        <select id="payment_method" name="payment_method">
 
-        <div>
-            <label for="payment_method">Payment Method</label>
-            <select id="payment_method" name="payment_method">
+                            <option value="Direct Debit">
+                                Direct Debit
+                            </option>
 
-                <option value="Direct Debit">
-                    Direct Debit
-                </option>
+                            <option value="Card Payment">
+                                Card Payment
+                            </option>
 
-                <option value="Card Payment">
-                    Card Payment
-                </option>
+                            <option value="Cash">
+                                Cash
+                            </option>
+                        </select>
+                    </li>
 
-                <option value="Cash">
-                    Cash
-                </option>
-            </select>
-        </div>
+                    <li class="form-row">
+                        <input type="checkbox" id="extra_physio" name="extra_physio">
+                        <label for="extra_physio">Extra Physio</label><br>
+                        <input type="checkbox" id="extra_pt" name="extra_pt" value="True">
+                        <label for="extra_pt">Extra PT</label><br>
+                        <input type="checkbox" id="extra_service_3" name="extra_service_3" value="True">
+                        <label for="extra_service_3">Extra Service3</label><br>
+                        <input type="checkbox" id="extra_service_4" name="extra_service_4" value="True">
+                        <label for="extra_service_4">Extra Service4</label><br>
+                    </li>
 
-        <div>
-            <input type="checkbox" id="extra_physio" name="extra_physio">
-            <label for="extra_physio">Extra Physio</label><br>
-            <input type="checkbox" id="extra_pt" name="extra_pt" value="True" >
-            <label for="extra_pt">Extra PT</label><br>
-            <input type="checkbox" id="extra_service_3" name="extra_service_3" value="True">
-            <label for="extra_service_3">Extra Service3</label><br>
-            <input type="checkbox" id="extra_service_4" name="extra_service_4" value="True">
-            <label for="extra_service_4">Extra Service4</label><br>
-        </div>
+                    <li class="form-row">
+                        <button type="submit">Create Customer</button>
+                    </li>
+                </ul>
+            </form>
+        </section>
 
-        <div>
-            <button type="submit">Create Customer</button>
-        </div>
-    </form>
-</section>
-
-{% endblock %}
+        {% endblock %}

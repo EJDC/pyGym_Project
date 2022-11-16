@@ -13,3 +13,15 @@ class Session:
         self.room = room
         self.session_type = session_type
         self.id = id
+
+    def date_in_words(self):
+        day = self.date_and_time.strftime("%d")
+        month = self.date_and_time.strftime("%b")
+        year = self.date_and_time.strftime("%Y")
+        return (day +" "+ month + " " + year)
+
+    def time_in_words(self):
+        hour = self.date_and_time.strftime("%I")
+        minute = self.date_and_time.strftime("%M")
+        ampm = self.date_and_time.strftime("%p")
+        return (hour +":"+ minute + " " + ampm)

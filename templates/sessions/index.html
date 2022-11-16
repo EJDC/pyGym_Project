@@ -1,31 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="page_title">All Sessions</div>
+</header>
 
-<h2>All Sessions</h2>
+<body>
+    <div class="container">
+        <div class="button_container">
+            <form action="/sessions/new">
+                <input class="button_top" type="submit" value="New Session">
+            </form>
+        </div>
+        <div class="table-container">
+            <div class="flex-table header">
+                <div class="flex-row">Name</div>
+                <div class="flex-row">Date</div>
+                <div class="flex-row">Time</div>
+                <div class="flex-row">Room</div>
+                <div class="flex-row">Instructor</div>
+            </div>
+            {% for session in sessions %}
+            <div class="flex-table row">
+                <div class="flex-row"><a class="name" href="/sessions/{{session.id}}"> {{ session.name }} </a> </div>
+                <div class="flex-row">{{session.date_in_words()}}</div>
+                <div class="flex-row">{{session.time_in_words()}}</div>
+                <div class="flex-row">{% if session.room['id'] %} {{session.room.name}} {% endif %} </div>
+                <div class="flex-row">{% if session.instructor['id'] %} <a class="name2" href="/staff/{{session.instructor.id}}"> {{session.instructor.first_name}} {{session.instructor.last_name}}  </a>
+                    {% endif %}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
 
-{% for session in sessions %}
-
-<section>
-    <ul>
-        <li>
-            <a href="/sessions/{{session.id}}"> {{ session.name }} </a>
-        </li>
-        <li>
-            {{ session.date_and_time }} </a>
-        </li>
-        <li>
-            {{session.duration}}
-        </li>
-            {% if session.instructor['id'] %}<li>{{session.instructor.first_name}}</li> {% endif %}
-            {% if session.room['id'] %}<li>{{session.room.name}}</li> {% endif %}
-    </ul>
-</section>
-
-{% endfor %}
 {% endblock %}
-
-
-<!-- <a href="/customers/{{ customer.id }}/edit"></a>
-<form action="/customers/{{ customer.id }}/delete" method="POST">
-    <input type="submit" value="Delete">
-</form> -->

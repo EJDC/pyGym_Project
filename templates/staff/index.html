@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="page_title">All Staff</div>
+</header>
 
-<h2>All Staff</h2>
+<body>
+    <div class="container">
+        <div class="button_container">
+            <form action="/staff/new">
+                <input class="button_top" type="submit" value="New Staff">
+            </form>
+        </div>
 
 {% for staff_member in staff %}
 
