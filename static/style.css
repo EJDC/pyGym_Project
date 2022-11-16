@@ -65,6 +65,28 @@ body {
   font-weight: bold;
 }
 
+/* Top Sectiom */
+
+.top_page_section {
+  text-align: center;
+  font-size: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
+}
+
+
+
+/* PAGE Sectiom */
+
+.page_section {
+  text-align: center;
+  font-size: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
+}
+
 /* NEW CUSTOMER/SESSION/STAFF BUTTON */
 
 .button_container {
@@ -105,6 +127,16 @@ body {
   background-color: #dcf0cb;
   list-style-type: none;
   padding: 1rem;
+  /* max-width: 800px; */
+  /* justify-content: center; */
+  box-sizing: border-box;
+  display: block;
+  margin:  auto;
+  width: 100%;
+  max-width: 800px;
+
+
+
 }
 .form-row {
   display: flex;
@@ -136,15 +168,42 @@ body {
   color: black;
 }
 
-.form-row > textarea {
-  flex: 2;
-  min-height: 4rem;
-  padding: 0.5rem;
-}
-
 .form-row > select {
   flex: 2;
   padding: 0.5rem;
+}
+
+/* DELETE */
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  padding-bottom:1rem;
+}
+
+.delete {
+  background-color: red; 
+  border: none;
+  color: white;
+  padding: 1rem 4rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.delete {
+  background-color: white; 
+  color: black; 
+  border: 2px solid red;
+}
+
+.delete:hover {
+  background-color: red;
+  color: white;
 }
 
 /* TABLE */
