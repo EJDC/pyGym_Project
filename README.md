@@ -2,8 +2,18 @@
 
 A full stack flask application to manage bookings for a gym.
 
-<img width="457" alt="resized2" align="center" src="https://user-images.githubusercontent.com/9053731/210601999-a96ad809-8307-4c3f-8de9-803ebbbca7f3.png">
+- [The Project Brief](#the-project-brief)
+  * [MVP](#mvp)
+  * [Extensions](#extensions)
+- [Project Restrictions](#project-restrictions)
+- [Video Walkthrough](#video-walkthrough)
+- [Planning](#planning)
+  * [Diagrams](#diagrams)
+  * [User Experience](#user-experience)
+- [Lessons Learned](#lessons-learned)
+- [Installation](#installation)
 
+ <br>
 
 ## The Project Brief
 A local gym has asked you to build a piece of software to help them to manage memberships, and register members for classes.
@@ -25,6 +35,8 @@ For this project's extensions, I decided to focus on infrastructure and building
 - sessions have a max capacity and members can only be added if space available.
 - members can have standard or premium membership
 
+ <br>
+
 ## Project Restrictions
 
 The project had to be built using  the following technologies:
@@ -41,6 +53,14 @@ Use of following was not permitted:
 - Use of Object Relational Mapping (eg ActiveRecord)
 - Pre-built CSS Libraries (eg Bootstrap)
 - Authentication
+
+ <br>
+
+## Video Walkthrough
+
+https://user-images.githubusercontent.com/9053731/210601605-bdaa53e8-82b3-43d0-9959-12d164f791c8.mp4
+
+ <br>
 
 ## Planning
 
@@ -63,11 +83,12 @@ I also drew up a basic User Profile, User Sitemap and User Needs Table, leading 
 
 Before I began building, I created some wireframe/prototypes on Figma, to give me something to work towards and allow me to add some basic styling as I went along.
 
-## Video Walkthrough
+ <br>
 
 
+## Lessons Learned
 
-https://user-images.githubusercontent.com/9053731/210601605-bdaa53e8-82b3-43d0-9959-12d164f791c8.mp4
+What did you learn while building this project? What challenges did you face and how did you overcome them?
 
 
 ## Installation
@@ -86,7 +107,4 @@ flask run
 You can then visit http://127.0.0.1:4999/ to view the app and try it out!
 
 
-## Lessons Learned
-
-What did you learn while building this project? What challenges did you face and how did you overcome them?
 
