@@ -68,9 +68,7 @@ As project time was limited to 6 days and I knew that my objectives were ambitio
 
 ### Diagrams
 
-I created a [Class Diagram](/readme_imgs/classdiagram.png) as well as some Object Diagrams, which helped me to better visualise how different parts of the app would interact and how a database might be structured.    
-
-The  diagrams also helped me plan my work, and I created a 'trello' style board on Notion to keep organised.
+I created a [Class Diagram](/readme_imgs/classdiagram.png) as well as some Object Diagrams, which helped me to better visualise how different parts of the app would interact and how a database might be structured.    The diagrams also helped me plan my work, and I created a [Kanban style board](/readme_imgs/kanban.png) on Notion to keep organised.
 
 ### User Experience
 
@@ -81,7 +79,7 @@ I also drew up a basic User Profile, User Sitemap and User Needs Table, leading 
 - Clarity of UI over fancy styling
 - Likely primary use will be on PC, but should be fully responsive for future expansion or IT Failure.
 
-Before I began building, I created some wireframe/prototypes on Figma, to give me something to work towards and allow me to add some basic styling as I went along.
+Before I began building, I created some [wireframe/prototypes on Figma](/readme_imgs/wireframes.png), to give me something to work towards and allow me to add some basic styling as I went along.
 
  <br>
 
