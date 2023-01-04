@@ -47,6 +47,19 @@ customer_repository.save(customer3)
 customer4 = Customer("Edna", "Krabappel", '1959-9-14', "edna@springfieldelementary.ac", "Premium", "Active", "Direct Debit", False, True, False, True)
 customer_repository.save(customer4)
 
+customer5 = Customer("Jasper", "Beardly", '1936-9-22', "jasper@oldfolkshome.com", "Standard", "Active", "Direct Debit", True, False, False, False)
+customer_repository.save(customer5)
+
+customer6 = Customer("Montgomery", "Burns", '1901-11-22', "monty@unleashthehouds.gov", "Premium", "Active", "Card Payment", True, True, False, True)
+customer_repository.save(customer6)
+
+customer7 = Customer("Helen", "Lovejoy", '1953-12-2', "patty@stopsmoking.com", "Premium", "Active", "Cash", False, False, True, False)
+customer_repository.save(customer7)
+
+customer8 = Customer("Sea", "Captain", '1945-11-14', "arr@arrrrrrrrr.com", "Premium", "Active", "Direct Debit", False, True, False, True)
+customer_repository.save(customer8)
+
+
 # ROOMS
 
 room1 = Room("Studio 1")
@@ -97,6 +110,7 @@ session_repository.save(session2)
 
 session3 = Session("Core Conditioning", '2022-11-22 09:30:00', 30, 16, 99, 0.00, 4.99, 25, 39.99, session_type2, staff2,  room3)
 session_repository.save(session3)
+
 
 # ROOM SESSION TYPES
 

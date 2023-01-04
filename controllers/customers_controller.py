@@ -34,9 +34,6 @@ def create_customer():
     extra_pt = request.form.get("extra_pt")
     extra_service_3 = request.form.get("extra_service_3")
     extra_service_4 = request.form.get("extra_service_4")
-    # missed_classes = missed_classes
-    # monthly_bill = monthly_bill
-    # id = id
     new_customer = Customer(first_name, last_name, dob, email, membership_level, membership_status, payment_method, extra_physio, extra_pt, extra_service_3, extra_service_4)
     customer_repository.save(new_customer)
     return redirect("/customers")

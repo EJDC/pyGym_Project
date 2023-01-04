@@ -69,9 +69,6 @@ def select_customers_attending_session(id):
     values = [id]
     results = run_sql(sql, values)
     for result in results:
-        # room = room_repository.select(result["room"])
-        # instructor = staff_repository.select(result["instructor_id"])
-        # session_type = session_type_repository.select(result["session_type"])
         customer = Customer(result["first_name"], result["last_name"], result["dob"], result["email"], result["membership_level"], result["membership_status"], result["payment_method"], result["extra_physio"], result["extra_pt"], result["extra_service_3"], result["extra_service_4"], result["missed_classes"], result["monthly_bill"], result["id"])
         customers_attending_session.append(customer)
     return customers_attending_session

@@ -36,10 +36,7 @@ def create_session():
     s_member_price = request.form["s_member_price"]
     max_capacity = request.form["max_capacity"]
     instructor_payment = request.form["instructor_payment"]
-    # room_id = null
     session_type_id = request.form["session_type_id"]
-    # instructor = null
-    # room = room_repository.select(room_id)
     session_type = session_type_repository.select(session_type_id)
     new_session = Session(name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor_payment, session_type)
     session_repository.save(new_session)
@@ -104,6 +101,7 @@ def add_instructor_and_room(id):
     updated_session = Session(name, date_and_time, duration, min_age, max_age, p_member_price, s_member_price, max_capacity, instructor_payment, session_type_id, instructor, room, id)
     session_repository.update(updated_session)
     return redirect("/sessions/" + id)
+
 # show
 @sessions_blueprint.route("/sessions/<id>")
 def show_(id):
@@ -111,17 +109,12 @@ def show_(id):
     session_type_id = session.session_type.id
     staff = staff_sessions_repository.select_session_instructor(session_type_id)
     rooms = room_session_types_repository.select_session_room(session_type_id)
-    # staff = staff_repository.select_all()
-    # rooms = room_repository.select_all()
     session_types = session_type_repository.select_all()
     attendees = session_repository.select_customers_attending_session(id)
     bookings = bookings_repository.select_all()
     customers = customers_repository.select_all()
     instructor = staff_repository.select(session.instructor.id)
     return render_template('sessions/session_information.html', instructor = instructor, customers = customers, session = session, staff = staff, rooms=rooms, session_types = session_types, attendees = attendees, bookings = bookings)
-
-    session = session_repository.select(id)
-
 
 
 # DELETE
