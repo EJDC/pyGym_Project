@@ -2,6 +2,9 @@
 
 A full stack flask application to manage bookings for a gym.
 
+<img width="457" alt="resized2" align="center" src="https://user-images.githubusercontent.com/9053731/210601999-a96ad809-8307-4c3f-8de9-803ebbbca7f3.png">
+
+
 ## The Project Brief
 A local gym has asked you to build a piece of software to help them to manage memberships, and register members for classes.
 
@@ -60,6 +63,13 @@ I also drew up a basic User Profile, User Sitemap and User Needs Table, leading 
 
 Before I began building, I created some wireframe/prototypes on Figma, to give me something to work towards and allow me to add some basic styling as I went along.
 
+## Video Walkthrough
+
+
+
+https://user-images.githubusercontent.com/9053731/210601605-bdaa53e8-82b3-43d0-9959-12d164f791c8.mp4
+
+
 ## Installation
 
 To run the project locally, you'll need Python3, PostgresSQL and Flask installed.
@@ -74,8 +84,6 @@ flask run
 ```
 
 You can then visit http://127.0.0.1:4999/ to view the app and try it out!
-
-## Video Walkthrough
 
 
 ## Lessons Learned
