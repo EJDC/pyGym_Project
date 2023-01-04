@@ -11,7 +11,8 @@ A full stack flask application to manage bookings for a gym.
   * [Diagrams](#diagrams)
   * [User Experience](#user-experience)
 - [Lessons Learned](#lessons-learned)
-- [Installation](#installation)
+- [Run Locally](#run-locally)
+- [What's Next?](#what-s-next-)
 
  <br>
 
@@ -112,7 +113,7 @@ You can then visit http://127.0.0.1:4999/ to view the app and try it out!
 
 <br>
 
- ## What's Next
+ ## What's Next?
 
 This repo is essentially in the same state as the project was presented after the initial 6 day period.  I plan to make a new repo, and work further on the project in future to practice my Flask/Python skills.  When I do, I will add a link here!
 
