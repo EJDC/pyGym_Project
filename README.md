@@ -68,7 +68,7 @@ As project time was limited to 6 days and I knew that my objectives were ambitio
 
 ### Diagrams
 
-I created a Class Diagram as well as some Object Diagrams, which helped me to better visualise how different parts of the app would interact and how a database might be structured.    
+I created a [Class Diagram](/readme_imgs/classdiagram.png) as well as some Object Diagrams, which helped me to better visualise how different parts of the app would interact and how a database might be structured.    
 
 The  diagrams also helped me plan my work, and I created a 'trello' style board on Notion to keep organised.
 
@@ -90,6 +90,7 @@ Before I began building, I created some wireframe/prototypes on Figma, to give m
 
 What did you learn while building this project? What challenges did you face and how did you overcome them?
 
+ <br>
 
 ## Installation
 
