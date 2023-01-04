@@ -86,11 +86,16 @@ Before I began building, I created some [wireframe/prototypes on Figma](/readme_
 
 ## Lessons Learned
 
-What did you learn while building this project? What challenges did you face and how did you overcome them?
+- Consolidated learning from first weeks of CodeClan, especially CRUD and Many-to-Many database relationships.
+- Visual Studio Code debugger is the best thing ever.
+- Planning and UX consideration before starting is 100% worth it.
+- Styling always takes longer than you think it will!
+- 6 days is not much time and time flies when you are having fun! 
 
  <br>
 
-## Installation
+
+## Run Locally
 
 To run the project locally, you'll need Python3, PostgresSQL and Flask installed.
 
@@ -105,5 +110,11 @@ flask run
 
 You can then visit http://127.0.0.1:4999/ to view the app and try it out!
 
+<br>
 
+ ## What's Next
+
+This repo is essentially in the same state as the project was presented after the initial 6 day period.  I plan to make a new repo, and work further on the project in future to practice my Flask/Python skills.  When I do, I will add a link here!
+
+ <br>
 
