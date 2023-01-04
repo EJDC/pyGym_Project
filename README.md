@@ -72,14 +72,14 @@ I created a [Class Diagram](/readme_imgs/classdiagram.png) as well as some Objec
 
 ### User Experience
 
-I also drew up a basic User Profile, User Sitemap and User Needs Table, leading to the following design priorities:
+I also drew up a basic [User Profile](/readme_imgs/persona.png), [User Sitemap](/readme_imgs/sitemap.png) and [User Needs Table](/readme_imgs/needstable.png), leading to the following design priorities:
 
 - Functionality and reliability
 - Accessibility
 - Clarity of UI over fancy styling
 - Likely primary use will be on PC, but should be fully responsive for future expansion or IT Failure.
 
-Before I began building, I created some [wireframe/prototypes on Figma](/readme_imgs/wireframes.png), to give me something to work towards and allow me to add some basic styling as I went along.
+Before I began building, I created some [wireframe/prototypes on Figma](/readme_imgs/wireframes), to give me something to work towards and allow me to add some basic styling as I went along.
 
  <br>
 
